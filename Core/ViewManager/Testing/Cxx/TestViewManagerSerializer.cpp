@@ -5,9 +5,9 @@
 #include <QSignalSpy>
 #include <QtTest>
 
-using namespace GVis::Core;
-using namespace GVis::Session;
-using namespace GVis::Visualize::Views;
+using namespace GViS::Core;
+using namespace GViS::Session;
+using namespace GViS::Visualize::Views;
 
 class TestViewManagerSerialize : public QObject {
     Q_OBJECT

@@ -8,7 +8,7 @@
 #include <QToolButton>
 #include <QVBoxLayout>
 
-namespace GVis::UI {
+namespace GViS::UI {
 
 namespace {
 constexpr int kMargin     = 16;
@@ -102,4 +102,4 @@ void ToastNotification::positionInParent() {
     move(area.right() - width() - kMargin, area.bottom() - height() - kMargin);
 }
 
-} // namespace GVis::UI
+} // namespace GViS::UI

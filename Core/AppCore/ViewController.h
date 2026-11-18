@@ -5,13 +5,13 @@
 #include <quuid.h>
 #include "Enums/ViewEnums.h"
 
-namespace GVis::Core {
+namespace GViS::Core {
 class ViewManager;
 class LayerManager;
 class ObjectRegistry;
-} // namespace GVis::Core
+} // namespace GViS::Core
 
-namespace GVis::Core::Controllers {
+namespace GViS::Core::Controllers {
 
 // ---------------------------------------------------------
 // @SECTION: обработка окон в приложении
@@ -58,4 +58,4 @@ class ViewController : public QObject {
     Core::ObjectRegistry* m_objectRegistry;
 };
 
-} // namespace GVis::Core::Controllers
+} // namespace GViS::Core::Controllers

@@ -2,7 +2,7 @@
 
 #include "Common/Interfaces/IProjectFormatCodec.h"
 
-namespace GVis::Session {
+namespace GViS::Session {
 
 class JsonProjectFormatCodec final : public IProjectFormatCodec {
   public:
@@ -10,4 +10,4 @@ class JsonProjectFormatCodec final : public IProjectFormatCodec {
     std::optional<QVariantMap> decode(const QByteArray& data) const override;
 };
 
-} // namespace GVis::Session
+} // namespace GViS::Session

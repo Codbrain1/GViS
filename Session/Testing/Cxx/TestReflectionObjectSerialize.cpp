@@ -24,7 +24,7 @@ void TestReflectionObjectSerialize::initTestCase() {
 
 void TestReflectionObjectSerialize::testEmptyMapAndDefaults() {
     TestTypes::TestObject object;
-    const auto            result = GVis::Reflection::variantMapToQObject({}, &object);
+    const auto            result = GViS::Reflection::variantMapToQObject({}, &object);
     QVERIFY(!result.success);
     QCOMPARE(result.totalKeysInMap, 0);
     QCOMPARE(object.id(), 0);
@@ -43,7 +43,7 @@ void TestReflectionObjectSerialize::testQtValueTypesAndNestedObject() {
     object.setColor(QColor("#abcdef"));
     object.setTimestamp(date);
 
-    const auto map = GVis::Reflection::QObjectToVariantMap(&object);
+    const auto map = GViS::Reflection::QObjectToVariantMap(&object);
     QCOMPARE(map.value("uuid").toUuid(), uuid);
     QCOMPARE(map.value("status").toString(), QString("Active"));
     QCOMPARE(map.value("numbers").toList().size(), 3);
@@ -52,7 +52,7 @@ void TestReflectionObjectSerialize::testQtValueTypesAndNestedObject() {
     QCOMPARE(map.value("timestamp").toDateTime(), date);
 
     TestTypes::TestValueObject restored;
-    const auto                 result = GVis::Reflection::variantMapToQObject(map, &restored);
+    const auto                 result = GViS::Reflection::variantMapToQObject(map, &restored);
     QVERIFY(result.success);
     QCOMPARE(restored.uuid(), uuid);
     QCOMPARE(restored.status(), TestTypes::Status::Active);
@@ -66,7 +66,7 @@ void TestReflectionObjectSerialize::testQtValueTypesAndNestedObject() {
 void TestReflectionObjectSerialize::testUnknownMissingAndReadOnlyFields() {
     TestTypes::TestObject object;
     QVariantMap           map{{"id", 10}, {"unknown", 1}, {"readOnlyField", "changed"}};
-    const auto            result = GVis::Reflection::variantMapToQObject(map, &object);
+    const auto            result = GViS::Reflection::variantMapToQObject(map, &object);
     QVERIFY(result.success);
     QCOMPARE(result.setPropertiesCount, 1);
     QVERIFY(result.unknownKeys.contains("unknown"));
@@ -79,7 +79,7 @@ void TestReflectionObjectSerialize::testUnknownMissingAndReadOnlyFields() {
 void TestReflectionObjectSerialize::testWrongFieldTypes() {
     TestTypes::TestObject object;
     QVariantMap           map{{"id", QString("not an integer")}, {"isActive", QString("not bool")}};
-    const auto            result = GVis::Reflection::variantMapToQObject(map, &object);
+    const auto            result = GViS::Reflection::variantMapToQObject(map, &object);
     QVERIFY(result.success);
     QCOMPARE(object.id(), 0);
 }
@@ -93,9 +93,9 @@ void TestReflectionObjectSerialize::testRoundTripAndLegacyJson() {
     original.setExtraValue(4.5);
     original.setStatus(TestTypes::Status::Disabled);
 
-    const auto                   map = GVis::Reflection::QObjectToVariantMap(&original);
+    const auto                   map = GViS::Reflection::QObjectToVariantMap(&original);
     TestTypes::TestObjectDerived restored;
-    const auto                   result = GVis::Reflection::variantMapToQObject(map, &restored);
+    const auto                   result = GViS::Reflection::variantMapToQObject(map, &restored);
     QVERIFY(result.success);
     QCOMPARE(restored.objectName(), original.objectName());
     QCOMPARE(restored.id(), original.id());
@@ -106,7 +106,7 @@ void TestReflectionObjectSerialize::testRoundTripAndLegacyJson() {
 
     QVariantMap           legacy{{"id", 12}, {"title", "old JSON"}, {"isActive", true}};
     TestTypes::TestObject legacyObject;
-    QVERIFY(GVis::Reflection::variantMapToQObject(legacy, &legacyObject).success);
+    QVERIFY(GViS::Reflection::variantMapToQObject(legacy, &legacyObject).success);
     QCOMPARE(legacyObject.id(), 12);
     QCOMPARE(legacyObject.title(), QString("old JSON"));
 }

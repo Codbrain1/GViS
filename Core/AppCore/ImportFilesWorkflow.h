@@ -5,13 +5,13 @@
 #include <QStringList>
 #include <QUuid>
 
-namespace GVis::Core {
+namespace GViS::Core {
 class DataManager;
 class ObjectRegistry;
 class FileSchemeRegistry;
-} // namespace GVis::Core
+} // namespace GViS::Core
 
-namespace GVis::Core::Controllers {
+namespace GViS::Core::Controllers {
 
 class ImportFilesWorkflow final : public QObject {
     Q_OBJECT
@@ -34,4 +34,4 @@ class ImportFilesWorkflow final : public QObject {
     Core::FileSchemeRegistry* m_fileSchemeRegistry;
 };
 
-} // namespace GVis::Core::Controllers
+} // namespace GViS::Core::Controllers

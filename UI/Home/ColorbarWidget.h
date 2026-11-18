@@ -8,13 +8,13 @@
 #include <QVector>
 #include <QWidget>
 
-namespace GVis {
+namespace GViS {
 namespace Visualize {
 namespace Layers {
 class LayerSettings;
 }
 } // namespace Visualize
-} // namespace GVis
+} // namespace GViS
 
 class ColorBarWidget : public QWidget {
     Q_OBJECT
@@ -24,10 +24,10 @@ class ColorBarWidget : public QWidget {
     ~ColorBarWidget() override;
 
     // Задать цветовую палитру (градиент) для отображения
-    void setColorMap(const GVis::Visualize::ColorMap& colorMap);
+    void setColorMap(const GViS::Visualize::ColorMap& colorMap);
 
     // Применить настройки слоя (диапазон значений, палитра, видимость и т.д.)
-    void setSettings(GVis::Visualize::Layers::LayerSettings* settings);
+    void setSettings(GViS::Visualize::Layers::LayerSettings* settings);
 
     // Переключение режима: true — вертикальный, false — горизонтальный
     void setOrientation(bool isVertical);
@@ -40,7 +40,7 @@ class ColorBarWidget : public QWidget {
   private:
     void setupPlot();
     void styleActiveAxis();
-    void applyGradient(const GVis::Visualize::ColorMap& colorMap);
+    void applyGradient(const GViS::Visualize::ColorMap& colorMap);
 
   private slots:
     void handleUpdateValues();
@@ -50,6 +50,6 @@ class ColorBarWidget : public QWidget {
     QCPColorScale* m_colorScale = nullptr;
     bool           m_isVertical = false;
 
-    GVis::Visualize::ColorMap               m_currentColorMap;
-    GVis::Visualize::Layers::LayerSettings* m_settings = nullptr;
+    GViS::Visualize::ColorMap               m_currentColorMap;
+    GViS::Visualize::Layers::LayerSettings* m_settings = nullptr;
 };

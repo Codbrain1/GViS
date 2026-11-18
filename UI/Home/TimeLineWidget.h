@@ -7,7 +7,7 @@ class TimeLineWidget;
 }
 QT_END_NAMESPACE
 
-namespace GVis::UI {
+namespace GViS::UI {
 class TimeLineWidget : public QWidget {
     Q_OBJECT
   public:
@@ -32,4 +32,4 @@ class TimeLineWidget : public QWidget {
     Core::AppCore*      m_app;
     void                setTextTimeLabelTextInternal();
 };
-} // namespace GVis::UI
+} // namespace GViS::UI

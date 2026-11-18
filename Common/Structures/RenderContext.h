@@ -3,7 +3,7 @@
 #include <QSize>
 #include <QVector3D>
 
-namespace GVis::Visualize {
+namespace GViS::Visualize {
 // нужен всем рендерерам
 struct RenderContext {
     QMatrix4x4 viewMatrix; // описывает направление и позицию взгляда и угол обзора
@@ -17,4 +17,4 @@ struct RenderContext {
         true; // переключение между перспективной и ортографической проекциями (параллельная)
 };
 
-} // namespace GVis::Visualize
+} // namespace GViS::Visualize

@@ -6,8 +6,7 @@
 #include <vtkType.h>
 #include <variant>
 
-
-namespace GVis::IO {
+namespace GViS::IO {
 bool BINWriter::write(const QString& path, vtkDataSet* data, const WriteScheme& scheme) {
     QFile file(path);
     auto  isValide = validate(file, scheme);
@@ -42,4 +41,4 @@ bool BINWriter::validate(QFile& file, const WriteScheme& scheme) {
         }
     }
 }
-} // namespace GVis::IO
+} // namespace GViS::IO

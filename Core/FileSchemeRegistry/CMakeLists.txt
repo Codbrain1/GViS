@@ -6,8 +6,8 @@ target_sources(FileSchemeRegistry PRIVATE
 target_include_directories(FileSchemeRegistry PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 target_link_libraries(FileSchemeRegistry PUBLIC
             project_config
-            GVis::Common
-            GVis::IO
+            GViS::Common
+            GViS::IO
 )
 
 if(ENABLE_TESTS)

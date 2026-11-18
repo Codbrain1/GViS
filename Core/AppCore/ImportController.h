@@ -15,14 +15,14 @@
 #include <memory>
 
 // Forward declarations в пространствах имен проекта
-namespace GVis::Core {
+namespace GViS::Core {
 class DataManager;
 class ObjectRegistry;
 class DataNode;
 class Snapshot;
-} // namespace GVis::Core
+} // namespace GViS::Core
 
-namespace GVis::Core::Controllers {
+namespace GViS::Core::Controllers {
 
 class ImportFilesWorkflow;
 class ImportExperimentWorkflow;
@@ -63,7 +63,7 @@ class ImportController : public QObject {
     std::optional<QUuid> getExperimentIdByNodePath(const QString& nodePath) const;
     std::optional<QUuid> getNodeIdByFilePath(const QString& filePath) const;
 
-    std::shared_ptr<GVis::Core::DataNode> getNodeById(const QUuid& nodeId);
+    std::shared_ptr<GViS::Core::DataNode> getNodeById(const QUuid& nodeId);
 
     // Временный API до выделения ProjectRestoreWorkflow.
     void prepareNodesForRestoration(const QMap<QString, Session::DataNodeState>& restoringNodes);
@@ -112,4 +112,4 @@ class ImportController : public QObject {
     void activateSnapshotInternal(const QUuid& snapshotId, bool isPreview);
 };
 
-} // namespace GVis::Core::Controllers
+} // namespace GViS::Core::Controllers

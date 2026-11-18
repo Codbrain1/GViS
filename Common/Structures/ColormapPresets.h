@@ -7,7 +7,7 @@
 #include <qcontainerfwd.h>
 #include <qlist.h>
 
-namespace GVis::Visualize {
+namespace GViS::Visualize {
 
 struct ColorPoint {
     double x;       // Позиция на шкале (0.0 - 1.0)
@@ -25,11 +25,11 @@ struct ColorMap {
     bool operator==(const ColorMap&) const = default;
 };
 
-} // namespace GVis::Visualize
+} // namespace GViS::Visualize
 
-Q_DECLARE_METATYPE(GVis::Visualize::ColorMap)
+Q_DECLARE_METATYPE(GViS::Visualize::ColorMap)
 
-namespace GVis::Visualize {
+namespace GViS::Visualize {
 
 class ColorMapPresets {
   public:
@@ -112,4 +112,4 @@ class ColorMapPresets {
     }
 };
 
-} // namespace GVis::Visualize
+} // namespace GViS::Visualize

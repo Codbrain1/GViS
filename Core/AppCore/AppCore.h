@@ -13,7 +13,7 @@
 #include <memory>
 
 // Forward declarations для ускорения компиляции
-namespace GVis::Core {
+namespace GViS::Core {
 class TaskManager;
 class DataManager;
 class ObjectRegistry;
@@ -21,23 +21,23 @@ class ViewManager;
 class LayerManager;
 class SessionManager;
 class FileSchemeRegistry;
-} // namespace GVis::Core
+} // namespace GViS::Core
 
-namespace GVis::Models {
+namespace GViS::Models {
 class DataTreeModel;
-} // namespace GVis::Models
+} // namespace GViS::Models
 
 // Forward declarations Контроллеров
-namespace GVis::Core::Controllers {
+namespace GViS::Core::Controllers {
 class ViewController;
 class ProjectController;
 class VideoController;
 class ImportController;
 class LayerController;
 class ExperimentController;
-} // namespace GVis::Core::Controllers
+} // namespace GViS::Core::Controllers
 
-namespace GVis::Core {
+namespace GViS::Core {
 class AppCore : public QObject {
     Q_OBJECT
   public:
@@ -89,4 +89,4 @@ class AppCore : public QObject {
     // модели данных
     std::unique_ptr<Models::DataTreeModel> m_dataTreeModel;
 };
-} // namespace GVis::Core
+} // namespace GViS::Core

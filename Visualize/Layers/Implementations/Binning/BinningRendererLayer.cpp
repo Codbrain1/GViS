@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <cmath>
 
-namespace GVis::Visualize::Layers {
+namespace GViS::Visualize::Layers {
 
 void BinningRendererLayer::buildShaders() {
     static const char* binVs = R"(
@@ -384,4 +384,4 @@ bool BinningRendererLayer::boundingBox(QVector3D& outMin, QVector3D& outMax) con
     return true;
 }
 
-} // namespace GVis::Visualize::Layers
+} // namespace GViS::Visualize::Layers

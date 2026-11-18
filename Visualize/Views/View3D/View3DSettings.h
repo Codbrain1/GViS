@@ -5,8 +5,7 @@
 #include <qtmetamacros.h>
 #include <algorithm>
 
-
-namespace GVis::Visualize::Views::View3D {
+namespace GViS::Visualize::Views::View3D {
 
 // ============================================================
 // Сетка на плоскости
@@ -276,4 +275,4 @@ class View3DSettings : public QObject {
 // Настройки самого 3D-вьюпорта: камера, фон, проекция, гизмо
 // ============================================================
 
-} // namespace GVis::Visualize::Views::View3D
+} // namespace GViS::Visualize::Views::View3D

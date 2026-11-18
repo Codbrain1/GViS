@@ -7,7 +7,7 @@
 #include <qobject.h>
 #include <quuid.h>
 
-namespace GVis::Visualize {
+namespace GViS::Visualize {
 ColorMapManager& ColorMapManager::instance() {
     static ColorMapManager _instance;
     return _instance;
@@ -46,7 +46,7 @@ void ColorMapManager::removeCustomMap(const QUuid& id) {
 }
 
 ColorMapManager::ColorMapManager(QObject* parent) : QObject(parent) {
-    qRegisterMetaType<ColorMap>("GVis::Visualize::ColorMap");
+    qRegisterMetaType<ColorMap>("GViS::Visualize::ColorMap");
 
     // При инициализации заполняем карту пресетами
     auto presets = ColorMapPresets::getStandardPresets();
@@ -59,7 +59,7 @@ bool ColorMapManager::contains(const QUuid& id) {
     return m_availableMaps.contains(id);
 }
 
-QIcon ColorMapManager::createColorMapIcon(const GVis::Visualize::ColorMap& map, QSize size) {
+QIcon ColorMapManager::createColorMapIcon(const GViS::Visualize::ColorMap& map, QSize size) {
     QPixmap  pix(size);
     QPainter painter(&pix);
 
@@ -82,4 +82,4 @@ QIcon ColorMapManager::createColorMapIcon(const GVis::Visualize::ColorMap& map, 
     return QIcon(pix);
 }
 
-} // namespace GVis::Visualize
+} // namespace GViS::Visualize

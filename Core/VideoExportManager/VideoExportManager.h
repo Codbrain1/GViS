@@ -9,20 +9,20 @@
 #include <quuid.h>
 #include <memory>
 
-namespace GVis::Core {
+namespace GViS::Core {
 
 class [[deprecated]] VideoExportManager : public QObject {
     Q_OBJECT
   public:
-    VideoExportManager(GVis::Core::DataManager*                        dataManager,
-                       std::shared_ptr<GVis::Visualize::IRenderLayer>  targetLayer,
-                       std::shared_ptr<GVis::Visualize::VideoExporter> exporter,
+    VideoExportManager(GViS::Core::DataManager*                        dataManager,
+                       std::shared_ptr<GViS::Visualize::IRenderLayer>  targetLayer,
+                       std::shared_ptr<GViS::Visualize::VideoExporter> exporter,
                        QObject*                                        parent = nullptr);
 
     // stride: 1 = каждый файл, 2 = через один, 10 = каждый десятый
     void start(const QStringList&          files,
-               const GVis::IO::ReadScheme& scheme,
-               GVis::IO::FileFormat        format,
+               const GViS::IO::ReadScheme& scheme,
+               GViS::IO::FileFormat        format,
                int                         stride = 1);
 
   signals:
@@ -34,17 +34,17 @@ class [[deprecated]] VideoExportManager : public QObject {
   private slots:
     void fillBuffer();
     void processReadyFrames();
-    void handleFileReady(const QUuid& taskId, GVis::IO::ReadResult result);
+    void handleFileReady(const QUuid& taskId, GViS::IO::ReadResult result);
 
   private:
     bool                                            m_isCancelled = false; // Флаг отмены
-    GVis::Core::DataManager*                        m_dataManager;
-    std::shared_ptr<GVis::Visualize::IRenderLayer>  m_targetLayer;
-    std::shared_ptr<GVis::Visualize::VideoExporter> m_exporter;
+    GViS::Core::DataManager*                        m_dataManager;
+    std::shared_ptr<GViS::Visualize::IRenderLayer>  m_targetLayer;
+    std::shared_ptr<GViS::Visualize::VideoExporter> m_exporter;
 
     QStringList          m_files;
-    GVis::IO::ReadScheme m_scheme;
-    GVis::IO::FileFormat m_format;
+    GViS::IO::ReadScheme m_scheme;
+    GViS::IO::FileFormat m_format;
 
     int m_stride;
     int m_totalFramesToRender;
@@ -59,4 +59,4 @@ class [[deprecated]] VideoExportManager : public QObject {
     QMap<int, IO::ReadResult> m_readyFrames;  // Отсортированный буфер готовых данных
 };
 
-} // namespace GVis::Core
+} // namespace GViS::Core

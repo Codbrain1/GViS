@@ -3,10 +3,10 @@
 
 #include "Core/FileSchemeRegistry/FileSchemeRegistry.h"
 
-Q_DECLARE_METATYPE(GVis::IO::PresetKey)
+Q_DECLARE_METATYPE(GViS::IO::PresetKey)
 
-using namespace GVis;
-using namespace GVis::Core;
+using namespace GViS;
+using namespace GViS::Core;
 
 class TestFileSchemeRegistry : public QObject {
     Q_OBJECT

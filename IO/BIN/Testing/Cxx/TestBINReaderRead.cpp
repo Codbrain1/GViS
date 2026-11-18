@@ -17,8 +17,7 @@
 
 
 
-
-using namespace GVis::IO;
+using namespace GViS::IO;
 
 class TestBINReaderRead : public QObject {
     Q_OBJECT

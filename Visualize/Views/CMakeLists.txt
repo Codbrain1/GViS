@@ -1,7 +1,7 @@
 include(GenerateExportHeader)
 
 add_library(Views SHARED)
-add_library(GVis::VisualizeViews ALIAS Views)
+add_library(GViS::VisualizeViews ALIAS Views)
 generate_export_header(Views)
 
 set(View2D_SOURSES 
@@ -35,9 +35,9 @@ target_include_directories(Views PUBLIC
 )
 target_link_libraries(Views PUBLIC
         project_config
-        GVis::Common
-        GVis::VisualizeColorMapManager
-        GVis::Session
+        GViS::Common
+        GViS::VisualizeColorMapManager
+        GViS::Session
         Qt6::Core
         Qt6::Widgets
         Qt6::Gui

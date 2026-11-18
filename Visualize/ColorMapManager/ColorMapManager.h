@@ -16,8 +16,7 @@
 #include <quuid.h>
 #include "colormapmanager_export.h"
 
-
-namespace GVis::Visualize {
+namespace GViS::Visualize {
 class COLORMAPMANAGER_EXPORT ColorMapManager : public QObject {
     Q_OBJECT
   public:
@@ -32,7 +31,7 @@ class COLORMAPMANAGER_EXPORT ColorMapManager : public QObject {
     void  AddCustomMap(const ColorMap& map);
     void  removeCustomMap(const QUuid& id);
     bool  contains(const QUuid& id);
-    QIcon createColorMapIcon(const GVis::Visualize::ColorMap& map, QSize size = QSize(80, 16));
+    QIcon createColorMapIcon(const GViS::Visualize::ColorMap& map, QSize size = QSize(80, 16));
   signals:
     void paleteAdded(const ColorMap& colorMap);
 
@@ -42,4 +41,4 @@ class COLORMAPMANAGER_EXPORT ColorMapManager : public QObject {
     // Храним мапу для быстрого доступа по UUID
     QMap<QUuid, ColorMap> m_availableMaps;
 };
-} // namespace GVis::Visualize
+} // namespace GViS::Visualize

@@ -1,1 +1,1 @@
-GVis_add_test(TestDataTreeModel DataTreeModel GVis::Core GVis::Common GVis::Visualize)
+GViS_add_test(TestDataTreeModel DataTreeModel GViS::Core GViS::Common GViS::Visualize)

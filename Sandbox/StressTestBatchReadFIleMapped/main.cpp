@@ -85,7 +85,7 @@ class ParallelReaderPool {
   public:
     ParallelReaderPool(unsigned int                maxThreads,
                        const std::vector<QString>& paths,
-                       const GVis::IO::ReadScheme& scheme)
+                       const GViS::IO::ReadScheme& scheme)
         : threadCount_(std::max(1U, maxThreads)), paths_(paths), scheme_(scheme) {
         workers_.reserve(threadCount_);
         for (unsigned int workerId = 0; workerId < threadCount_; ++workerId) {
@@ -106,7 +106,7 @@ class ParallelReaderPool {
         }
     }
 
-    void readFiles(int count, std::vector<std::optional<GVis::IO::ReadResult>>& results) {
+    void readFiles(int count, std::vector<std::optional<GViS::IO::ReadResult>>& results) {
         std::unique_lock<std::mutex> lock(mutex_);
         currentCount_    = count;
         currentResults_  = &results;
@@ -121,14 +121,14 @@ class ParallelReaderPool {
 
   private:
     void workerLoop(unsigned int workerId) {
-        auto reader = GVis::IO::createReader(GVis::IO::FileFormat::BIN);
-        reader->setPolicy(GVis::IO::FilePolicy::ForceMapped);
+        auto reader = GViS::IO::createReader(GViS::IO::FileFormat::BIN);
+        reader->setPolicy(GViS::IO::FilePolicy::ForceMapped);
 
         std::uint64_t seenGeneration = 0;
 
         while (true) {
             int                                               count   = 0;
-            std::vector<std::optional<GVis::IO::ReadResult>>* results = nullptr;
+            std::vector<std::optional<GViS::IO::ReadResult>>* results = nullptr;
 
             {
                 std::unique_lock<std::mutex> lock(mutex_);
@@ -168,7 +168,7 @@ class ParallelReaderPool {
 
     unsigned int                                      threadCount_;
     const std::vector<QString>&                       paths_;
-    const GVis::IO::ReadScheme&                       scheme_;
+    const GViS::IO::ReadScheme&                       scheme_;
     std::vector<std::thread>                          workers_;
     std::mutex                                        mutex_;
     std::condition_variable                           cvStart_;
@@ -179,14 +179,14 @@ class ParallelReaderPool {
     unsigned int                                      activeWorkers_   = 0;
     unsigned int                                      finishedWorkers_ = 0;
     bool                                              stop_            = false;
-    std::vector<std::optional<GVis::IO::ReadResult>>* currentResults_  = nullptr;
+    std::vector<std::optional<GViS::IO::ReadResult>>* currentResults_  = nullptr;
 };
 
-void readFilesSequentially(GVis::IReader&                                    reader,
+void readFilesSequentially(GViS::IReader&                                    reader,
                            const std::vector<QString>&                       paths,
                            int                                               count,
-                           const GVis::IO::ReadScheme&                       scheme,
-                           std::vector<std::optional<GVis::IO::ReadResult>>& results) {
+                           const GViS::IO::ReadScheme&                       scheme,
+                           std::vector<std::optional<GViS::IO::ReadResult>>& results) {
     for (int index = 0; index < count; ++index) {
         results[index] = reader.read(paths[index], scheme);
     }
@@ -221,10 +221,10 @@ int main(int argc, char* argv[]) {
         return 0;
     }
 
-    const GVis::IO::PresetKey targetKey{GVis::Visualize::EntityType::Stars,
-                                        GVis::IO::FileFormat::BIN,
-                                        GVis::IO::ModelingProgrammVersion::V2};
-    const auto                presets = GVis::IO::ReadSchemePresets::getStandardPresets();
+    const GViS::IO::PresetKey targetKey{GViS::Visualize::EntityType::Stars,
+                                        GViS::IO::FileFormat::BIN,
+                                        GViS::IO::ModelingProgrammVersion::V2};
+    const auto                presets = GViS::IO::ReadSchemePresets::getStandardPresets();
     const auto                preset =
         std::find_if(presets.cbegin(), presets.cend(), [&targetKey](const auto& pair) {
             return pair.first == targetKey;
@@ -256,8 +256,8 @@ int main(int argc, char* argv[]) {
               << std::string(separatorSize, '-') << "\n";
 
     // Инициализируем ридеры и пул потоков один раз до начала серии замеров
-    auto sequentialReader = GVis::IO::createReader(GVis::IO::FileFormat::BIN);
-    sequentialReader->setPolicy(GVis::IO::FilePolicy::ForceStandart);
+    auto sequentialReader = GViS::IO::createReader(GViS::IO::FileFormat::BIN);
+    sequentialReader->setPolicy(GViS::IO::FilePolicy::ForceStandart);
 
     std::optional<ParallelReaderPool> parallelPool;
     if (options.mode == ExecutionMode::Parallel) {
@@ -269,7 +269,7 @@ int main(int argc, char* argv[]) {
         totalBytes += files[count - 1].size();
 
         // Контейнер под загруженные данные текущего шага (1..count файлов)
-        std::vector<std::optional<GVis::IO::ReadResult>> results(count);
+        std::vector<std::optional<GViS::IO::ReadResult>> results(count);
 
         const auto start = std::chrono::steady_clock::now();
         if (options.mode == ExecutionMode::Sequential) {

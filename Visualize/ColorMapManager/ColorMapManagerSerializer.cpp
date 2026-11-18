@@ -1,18 +1,18 @@
 #include "ColorMapManagerSerializer.h"
 #include "Common/Structures/SessionStructures.h"
 
-namespace GVis::Visualize {
+namespace GViS::Visualize {
 
-GVis::Session::ColorMapManagerDTO ColorMapManagerSerializer::toDTO() {
-    GVis::Session::ColorMapManagerDTO dto;
-    dto.colorMaps = GVis::Visualize::ColorMapManager::instance().getAllMaps();
+GViS::Session::ColorMapManagerDTO ColorMapManagerSerializer::toDTO() {
+    GViS::Session::ColorMapManagerDTO dto;
+    dto.colorMaps = GViS::Visualize::ColorMapManager::instance().getAllMaps();
     return dto;
 }
 
-void ColorMapManagerSerializer::fromDTO(const GVis::Session::ColorMapManagerDTO& dto) {
+void ColorMapManagerSerializer::fromDTO(const GViS::Session::ColorMapManagerDTO& dto) {
     for (const auto map : dto.colorMaps) {
-        GVis::Visualize::ColorMapManager::instance().AddCustomMap(map);
+        GViS::Visualize::ColorMapManager::instance().AddCustomMap(map);
     }
 }
 
-} // namespace GVis::Visualize
+} // namespace GViS::Visualize

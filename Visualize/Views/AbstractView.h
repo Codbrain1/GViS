@@ -8,7 +8,7 @@
 #include <quuid.h>
 #include "QVariantMap"
 
-namespace GVis::Visualize::Views {
+namespace GViS::Visualize::Views {
 
 class AbstractView : public QObject {
     Q_OBJECT
@@ -55,4 +55,4 @@ class AbstractView : public QObject {
     QUuid   m_id;
     QString m_viewName;
 };
-} // namespace GVis::Visualize::Views
+} // namespace GViS::Visualize::Views

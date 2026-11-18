@@ -1,7 +1,7 @@
 #pragma once
 #include <QString>
 #include <qcontainerfwd.h>
-namespace GVis::IO
+namespace GViS::IO
 {
 Q_NAMESPACE
 
@@ -50,13 +50,13 @@ inline QString fileformatToString(FileFormat format)
 {
   switch (format)
   {
-  case GVis::IO::FileFormat::BIN:
+  case GViS::IO::FileFormat::BIN:
     return "BIN";
-  case GVis::IO::FileFormat::GRD:
+  case GViS::IO::FileFormat::GRD:
     return "GRD";
-  case GVis::IO::FileFormat::HDF5:
+  case GViS::IO::FileFormat::HDF5:
     return "HDF5";
-  case GVis::IO::FileFormat::TXT:
+  case GViS::IO::FileFormat::TXT:
     return "TXT";
   default:
     return "Unknown";
@@ -65,13 +65,13 @@ inline QString fileformatToString(FileFormat format)
 inline FileFormat fileformatFromString(QString s)
 {
   if (s == "BIN")
-    return GVis::IO::FileFormat::BIN;
+    return GViS::IO::FileFormat::BIN;
   if (s == "GRD")
-    return GVis::IO::FileFormat::GRD;
+    return GViS::IO::FileFormat::GRD;
   if (s == "HDF5")
-    return GVis::IO::FileFormat::HDF5;
+    return GViS::IO::FileFormat::HDF5;
   if (s == "TXT")
-    return GVis::IO::FileFormat::TXT;
+    return GViS::IO::FileFormat::TXT;
   return FileFormat::Unknown;
 }
-} // namespace GVis::IO
+} // namespace GViS::IO

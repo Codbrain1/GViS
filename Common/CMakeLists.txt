@@ -37,10 +37,10 @@ target_link_libraries(CommonMetaObjects PUBLIC
     VTK::CommonDataModel
 )
 
-add_library(GVis::CommonMetaObjects ALIAS CommonMetaObjects)
+add_library(GViS::CommonMetaObjects ALIAS CommonMetaObjects)
 
 add_library(Common INTERFACE)
-add_library(GVis::Common ALIAS Common)
+add_library(GViS::Common ALIAS Common)
 target_include_directories(Common INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/..)
 target_link_libraries(Common INTERFACE
     Enums

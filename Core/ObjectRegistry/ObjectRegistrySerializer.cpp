@@ -10,8 +10,7 @@
 #include <memory>
 #include <optional>
 
-
-namespace GVis::Core {
+namespace GViS::Core {
 std::optional<Session::ObjectRegistryDTO> ObjectRegistrySerializer::toDTO(Core::ObjectRegistry* registry) {
     Session::ObjectRegistryDTO dto;
     if (!registry) {
@@ -202,4 +201,4 @@ std::shared_ptr<Core::DataNode> ObjectRegistrySerializer::fromDTO(const Session:
     auto dataNode = std::make_shared<Core::DataNode>(dto);
     return dataNode;
 }
-} // namespace GVis::Core
+} // namespace GViS::Core

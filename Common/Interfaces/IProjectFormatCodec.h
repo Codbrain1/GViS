@@ -5,7 +5,7 @@
 #include <memory>
 #include <optional>
 
-namespace GVis::Session
+namespace GViS::Session
 {
 
 class IProjectFormatCodec
@@ -19,4 +19,4 @@ public:
 
 using ProjectFormatCodecPtr = std::unique_ptr<IProjectFormatCodec>;
 
-} // namespace GVis::Session
+} // namespace GViS::Session

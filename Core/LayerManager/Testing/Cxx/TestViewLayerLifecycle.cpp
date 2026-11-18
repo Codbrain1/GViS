@@ -7,9 +7,9 @@
 #include "Core/LayerManager/LayerManager.h"
 #include "Core/ViewManager/ViewManager.h"
 
-using namespace GVis::Core;
-using namespace GVis::Visualize::Views;
-using GVis::Visualize::Layers::RenderLayerType;
+using namespace GViS::Core;
+using namespace GViS::Visualize::Views;
+using GViS::Visualize::Layers::RenderLayerType;
 
 class TestViewLayerLifecycle : public QObject {
     Q_OBJECT

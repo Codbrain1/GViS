@@ -6,7 +6,7 @@
 #include "View3DSettings.h"
 #include <memory>
 
-namespace GVis::Visualize::Views {
+namespace GViS::Visualize::Views {
 class AbstractView3D : public AbstractView {
     Q_OBJECT
   public:
@@ -31,4 +31,4 @@ class AbstractView3D : public AbstractView {
   protected:
     std::unique_ptr<View3D::View3DSettings> m_settings;
 };
-} // namespace GVis::Visualize::Views
+} // namespace GViS::Visualize::Views

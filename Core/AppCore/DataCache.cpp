@@ -6,8 +6,7 @@
 #include "Core/ObjectRegistry/ObjectRegistry.h"
 #include <QFileInfo>
 
-
-namespace GVis::Core::Controllers {
+namespace GViS::Core::Controllers {
 
 DataCache::DataCache(Core::DataManager*        dataManager,
                      Core::ObjectRegistry*     objectRegistry,
@@ -95,4 +94,4 @@ void DataCache::handleIoFinished(const QUuid& taskId, bool) {
         m_loadingNodes.remove(task.nodeId);
 }
 
-} // namespace GVis::Core::Controllers
+} // namespace GViS::Core::Controllers

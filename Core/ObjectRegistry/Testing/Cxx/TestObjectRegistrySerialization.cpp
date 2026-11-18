@@ -6,7 +6,7 @@
 
 class TestObjectRegistrySerializer : public QObject {
     Q_OBJECT
-    std::unique_ptr<GVis::Core::ObjectRegistry> objectRegistry;
+    std::unique_ptr<GViS::Core::ObjectRegistry> objectRegistry;
     void                                        init();
     void                                        initSeveralObjects();
   private slots:
@@ -26,12 +26,12 @@ class TestObjectRegistrySerializer : public QObject {
 };
 
 void TestObjectRegistrySerializer::init() {
-    objectRegistry = std::make_unique<GVis::Core::ObjectRegistry>();
+    objectRegistry = std::make_unique<GViS::Core::ObjectRegistry>();
     auto dataNode =
-        std::make_shared<GVis::Core::DataNode>(nullptr, "TestDataNode", 1.0, GVis::Visualize::EntityType::Stars);
+        std::make_shared<GViS::Core::DataNode>(nullptr, "TestDataNode", 1.0, GViS::Visualize::EntityType::Stars);
     dataNode->path            = "D:/Test/F";
     dataNode->scheme          = QUuid::createUuid();
-    dataNode->format          = GVis::IO::FileFormat::BIN;
+    dataNode->format          = GViS::IO::FileFormat::BIN;
     dataNode->stats.bounds[0] = 1;
     dataNode->stats.bounds[1] = 1;
     dataNode->stats.bounds[2] = 1;
@@ -44,52 +44,52 @@ void TestObjectRegistrySerializer::init() {
     dataNode->stats.center[0] = 4;
 
 
-    auto snapshot = std::make_shared<GVis::Core::Snapshot>("TestSnapshot", 1.0);
+    auto snapshot = std::make_shared<GViS::Core::Snapshot>("TestSnapshot", 1.0);
     snapshot->addComponent(dataNode);
-    auto experiment = std::make_shared<GVis::Core::Experiment>("TestExperiment");
+    auto experiment = std::make_shared<GViS::Core::Experiment>("TestExperiment");
     experiment->addSnapshot(snapshot);
     objectRegistry->registerExperiment(experiment);
 }
 
 void TestObjectRegistrySerializer::initSeveralObjects() {
-    objectRegistry     = std::make_unique<GVis::Core::ObjectRegistry>();
+    objectRegistry     = std::make_unique<GViS::Core::ObjectRegistry>();
     auto getEntityType = [](int i) {
         if (i == 0) {
-            return GVis::Visualize::EntityType::Stars;
+            return GViS::Visualize::EntityType::Stars;
         } else if (i == 1) {
-            return GVis::Visualize::EntityType::DarkMatter;
+            return GViS::Visualize::EntityType::DarkMatter;
         } else if (i == 2) {
-            return GVis::Visualize::EntityType::Gas;
+            return GViS::Visualize::EntityType::Gas;
         } else if (i == 3) {
-            return GVis::Visualize::EntityType::Mixed;
+            return GViS::Visualize::EntityType::Mixed;
         }
-        return GVis::Visualize::EntityType::Unknown;
+        return GViS::Visualize::EntityType::Unknown;
     };
 
     auto getFileFormat = [](int i) {
         if (i == 0) {
-            return GVis::IO::FileFormat::BIN;
+            return GViS::IO::FileFormat::BIN;
         } else if (i == 1) {
-            return GVis::IO::FileFormat::GRD;
+            return GViS::IO::FileFormat::GRD;
         } else if (i == 2) {
-            return GVis::IO::FileFormat::HDF5;
+            return GViS::IO::FileFormat::HDF5;
         } else if (i == 3) {
-            return GVis::IO::FileFormat::TXT;
+            return GViS::IO::FileFormat::TXT;
         }
-        return GVis::IO::FileFormat::Unknown;
+        return GViS::IO::FileFormat::Unknown;
     };
 
 
     for (int k = 0; k < 2; ++k) {
-        auto experiment = std::make_shared<GVis::Core::Experiment>(QString("TestExperiment%1").arg(k));
+        auto experiment = std::make_shared<GViS::Core::Experiment>(QString("TestExperiment%1").arg(k));
 
         for (int j = 0; j < 3; ++j) {
             auto snapshot =
-                std::make_shared<GVis::Core::Snapshot>(experiment->name + QString("TestSnapshot%1").arg(j), j);
+                std::make_shared<GViS::Core::Snapshot>(experiment->name + QString("TestSnapshot%1").arg(j), j);
 
             for (int i = 0; i < 5; ++i) {
                 auto dataNode =
-                    std::make_shared<GVis::Core::DataNode>(nullptr,
+                    std::make_shared<GViS::Core::DataNode>(nullptr,
                                                            snapshot->name + QString("TestDataNode%1").arg(i),
                                                            i,
                                                            getEntityType(i));
@@ -115,7 +115,7 @@ void TestObjectRegistrySerializer::initTestCase() {
 
 void TestObjectRegistrySerializer::testSerializeObjectRegistry() {
     init();
-    auto dto_ptr = GVis::Core::ObjectRegistrySerializer::toDTO(objectRegistry.get());
+    auto dto_ptr = GViS::Core::ObjectRegistrySerializer::toDTO(objectRegistry.get());
     QVERIFY(dto_ptr.has_value());
     auto& dto = dto_ptr.value();
 
@@ -155,7 +155,7 @@ void TestObjectRegistrySerializer::testSerializeObjectRegistrySeveralObjects() {
     initSeveralObjects();
 
     // Сериализуем
-    auto dto_ptr = GVis::Core::ObjectRegistrySerializer::toDTO(objectRegistry.get());
+    auto dto_ptr = GViS::Core::ObjectRegistrySerializer::toDTO(objectRegistry.get());
 
     QVERIFY(dto_ptr.has_value());
     auto& dto = dto_ptr.value();
@@ -167,12 +167,12 @@ void TestObjectRegistrySerializer::testSerializeObjectRegistrySeveralObjects() {
     QCOMPARE(dto.nodes.size(), 30);
 
     // Создаем быструю хеш-таблицу DTO для проверки связей по UUID
-    QHash<QUuid, GVis::Session::SnapshotDTO> dtoSnapshotsMap;
+    QHash<QUuid, GViS::Session::SnapshotDTO> dtoSnapshotsMap;
     for (const auto& snapDto : dto.snapshots) {
         dtoSnapshotsMap.insert(snapDto.id, snapDto);
     }
 
-    QHash<QUuid, GVis::Session::DataNodeDTO> dtoNodesMap;
+    QHash<QUuid, GViS::Session::DataNodeDTO> dtoNodesMap;
     for (const auto& nodeDto : dto.nodes) {
         dtoNodesMap.insert(nodeDto.id, nodeDto);
     }
@@ -184,7 +184,7 @@ void TestObjectRegistrySerializer::testSerializeObjectRegistrySeveralObjects() {
         auto expDtoIt =
             std::find_if(dto.experiments.begin(),
                          dto.experiments.end(),
-                         [&origExp](const GVis::Session::ExperimentDTO& item) { return item.id == origExp->id; });
+                         [&origExp](const GViS::Session::ExperimentDTO& item) { return item.id == origExp->id; });
 
         QVERIFY2(expDtoIt != dto.experiments.end(), "ExperimentDTO for original experiment not found!");
         QCOMPARE(expDtoIt->name, origExp->name);
@@ -225,16 +225,16 @@ void TestObjectRegistrySerializer::testSerializeObjectRegistrySeveralObjects() {
 void TestObjectRegistrySerializer::testDeserializeObjectRegistry() {
     // Инициализируем исходные данные и формируем DTO
     init();
-    auto dto_ptr = GVis::Core::ObjectRegistrySerializer::toDTO(objectRegistry.get());
+    auto dto_ptr = GViS::Core::ObjectRegistrySerializer::toDTO(objectRegistry.get());
 
     QVERIFY(dto_ptr.has_value());
     auto& dto = dto_ptr.value();
 
     // Создаем совершенно новый чистый реестр для восстановления
-    auto restoredRegistry = std::make_unique<GVis::Core::ObjectRegistry>();
+    auto restoredRegistry = std::make_unique<GViS::Core::ObjectRegistry>();
 
     // Вызываем десериализацию и проверяем успешность возврата
-    bool success = GVis::Core::ObjectRegistrySerializer::fromDTO(dto, restoredRegistry.get());
+    bool success = GViS::Core::ObjectRegistrySerializer::fromDTO(dto, restoredRegistry.get());
     QVERIFY(success);
 
     // Проверяем, что в восстановленном реестре созданы объекты
@@ -270,29 +270,29 @@ void TestObjectRegistrySerializer::testDeserializeObjectRegistry() {
 }
 
 void TestObjectRegistrySerializer::testEmptyRegistry() {
-    objectRegistry = std::make_unique<GVis::Core::ObjectRegistry>();
-    const auto dto = GVis::Core::ObjectRegistrySerializer::toDTO(objectRegistry.get());
+    objectRegistry = std::make_unique<GViS::Core::ObjectRegistry>();
+    const auto dto = GViS::Core::ObjectRegistrySerializer::toDTO(objectRegistry.get());
     QVERIFY(dto.has_value());
     QVERIFY(dto->experiments.isEmpty());
     QVERIFY(dto->snapshots.isEmpty());
     QVERIFY(dto->nodes.isEmpty());
 
-    GVis::Core::ObjectRegistry restored;
-    QVERIFY(GVis::Core::ObjectRegistrySerializer::fromDTO(*dto, &restored));
+    GViS::Core::ObjectRegistry restored;
+    QVERIFY(GViS::Core::ObjectRegistrySerializer::fromDTO(*dto, &restored));
     QVERIFY(restored.getAllExperiments().isEmpty());
     QVERIFY(restored.getAllSnapshots().isEmpty());
     QVERIFY(restored.getAllNodes().isEmpty());
 }
 
 void TestObjectRegistrySerializer::testDuplicateExperimentNamesAndEmptyContainers() {
-    objectRegistry = std::make_unique<GVis::Core::ObjectRegistry>();
-    auto first     = std::make_shared<GVis::Core::Experiment>("Same name");
-    auto second    = std::make_shared<GVis::Core::Experiment>("Same name");
-    first->addSnapshot(std::make_shared<GVis::Core::Snapshot>("Empty snapshot", 1.0));
+    objectRegistry = std::make_unique<GViS::Core::ObjectRegistry>();
+    auto first     = std::make_shared<GViS::Core::Experiment>("Same name");
+    auto second    = std::make_shared<GViS::Core::Experiment>("Same name");
+    first->addSnapshot(std::make_shared<GViS::Core::Snapshot>("Empty snapshot", 1.0));
     objectRegistry->registerExperiment(first);
     objectRegistry->registerExperiment(second);
 
-    const auto dto = GVis::Core::ObjectRegistrySerializer::toDTO(objectRegistry.get());
+    const auto dto = GViS::Core::ObjectRegistrySerializer::toDTO(objectRegistry.get());
     QVERIFY(dto.has_value());
     QCOMPARE(dto->experiments.size(), 2);
     QCOMPARE(dto->experiments.at(0).name, dto->experiments.at(1).name);
@@ -305,98 +305,98 @@ void TestObjectRegistrySerializer::testDuplicateExperimentNamesAndEmptyContainer
     QCOMPARE(dto->snapshots.size(), 1);
     QVERIFY(dto->snapshots.first().nodes.isEmpty());
 
-    GVis::Core::ObjectRegistry restored;
-    QVERIFY(GVis::Core::ObjectRegistrySerializer::fromDTO(*dto, &restored));
+    GViS::Core::ObjectRegistry restored;
+    QVERIFY(GViS::Core::ObjectRegistrySerializer::fromDTO(*dto, &restored));
     QCOMPARE(restored.getAllExperiments().size(), 2);
     QCOMPARE(restored.getAllSnapshots().size(), 1);
     QVERIFY(restored.getAllSnapshots().first()->components.isEmpty());
 }
 
 void TestObjectRegistrySerializer::testNonstandardDataNodeFieldsAndNullData() {
-    objectRegistry        = std::make_unique<GVis::Core::ObjectRegistry>();
-    auto node             = std::make_shared<GVis::Core::DataNode>(nullptr, "");
+    objectRegistry        = std::make_unique<GViS::Core::ObjectRegistry>();
+    auto node             = std::make_shared<GViS::Core::DataNode>(nullptr, "");
     node->path            = QString();
     node->scheme          = QUuid();
-    node->format          = GVis::IO::FileFormat::Unknown;
+    node->format          = GViS::IO::FileFormat::Unknown;
     node->stats.timestamp = -42.5;
     node->stats.cellCount = 0;
     node->stats.bounds[0] = -1.0;
     node->stats.bounds[5] = 99.0;
     node->stats.center[2] = 7.5;
-    auto snapshot         = std::make_shared<GVis::Core::Snapshot>("Snapshot");
+    auto snapshot         = std::make_shared<GViS::Core::Snapshot>("Snapshot");
     snapshot->addComponent(node);
-    auto experiment = std::make_shared<GVis::Core::Experiment>("Experiment");
+    auto experiment = std::make_shared<GViS::Core::Experiment>("Experiment");
     experiment->addSnapshot(snapshot);
     objectRegistry->registerExperiment(experiment);
 
-    const auto dto = GVis::Core::ObjectRegistrySerializer::toDTO(objectRegistry.get());
+    const auto dto = GViS::Core::ObjectRegistrySerializer::toDTO(objectRegistry.get());
     QVERIFY(dto.has_value());
     QCOMPARE(dto->nodes.size(), 1);
     QCOMPARE(dto->nodes.first().name, QString());
     QCOMPARE(dto->nodes.first().path, QString());
     QVERIFY(dto->nodes.first().scheme.isNull());
-    QCOMPARE(dto->nodes.first().format, GVis::IO::FileFormat::Unknown);
+    QCOMPARE(dto->nodes.first().format, GViS::IO::FileFormat::Unknown);
     QCOMPARE(dto->nodes.first().stats, node->stats);
 
-    GVis::Core::ObjectRegistry restored;
-    QVERIFY(GVis::Core::ObjectRegistrySerializer::fromDTO(*dto, &restored));
+    GViS::Core::ObjectRegistry restored;
+    QVERIFY(GViS::Core::ObjectRegistrySerializer::fromDTO(*dto, &restored));
     const auto restoredNode = restored.getNode(node->id);
     QVERIFY(restoredNode);
     QVERIFY(!restoredNode->isLoaded());
     QCOMPARE(restoredNode->label, QString());
     QCOMPARE(restoredNode->path, QString());
     QVERIFY(restoredNode->scheme.isNull());
-    QCOMPARE(restoredNode->format, GVis::IO::FileFormat::Unknown);
+    QCOMPARE(restoredNode->format, GViS::IO::FileFormat::Unknown);
     QCOMPARE(restoredNode->type, node->type);
     QCOMPARE(restoredNode->stats, node->stats);
 }
 
 void TestObjectRegistrySerializer::testRejectsDuplicateIds() {
-    GVis::Session::ObjectRegistryDTO dto;
-    GVis::Session::ExperimentDTO     first;
+    GViS::Session::ObjectRegistryDTO dto;
+    GViS::Session::ExperimentDTO     first;
     first.id        = QUuid::createUuid();
     first.name      = "first";
     auto second     = first;
     second.name     = "second";
     dto.experiments = {first, second};
 
-    GVis::Core::ObjectRegistry restored;
-    QVERIFY(!GVis::Core::ObjectRegistrySerializer::fromDTO(dto, &restored));
+    GViS::Core::ObjectRegistry restored;
+    QVERIFY(!GViS::Core::ObjectRegistrySerializer::fromDTO(dto, &restored));
     QVERIFY(restored.getAllExperiments().isEmpty());
 }
 
 void TestObjectRegistrySerializer::testRejectsMissingReferences() {
-    GVis::Session::ObjectRegistryDTO dto;
-    GVis::Session::ExperimentDTO     experiment;
+    GViS::Session::ObjectRegistryDTO dto;
+    GViS::Session::ExperimentDTO     experiment;
     experiment.id = QUuid::createUuid();
     experiment.snapshots.append(QUuid::createUuid());
     dto.experiments.append(experiment);
 
-    GVis::Core::ObjectRegistry restored;
-    QVERIFY(!GVis::Core::ObjectRegistrySerializer::fromDTO(dto, &restored));
+    GViS::Core::ObjectRegistry restored;
+    QVERIFY(!GViS::Core::ObjectRegistrySerializer::fromDTO(dto, &restored));
     QVERIFY(restored.getAllExperiments().isEmpty());
 
     dto.experiments.clear();
-    GVis::Session::SnapshotDTO snapshot;
+    GViS::Session::SnapshotDTO snapshot;
     snapshot.id = QUuid::createUuid();
     snapshot.nodes.append(QUuid::createUuid());
     dto.snapshots.append(snapshot);
-    QVERIFY(!GVis::Core::ObjectRegistrySerializer::fromDTO(dto, &restored));
+    QVERIFY(!GViS::Core::ObjectRegistrySerializer::fromDTO(dto, &restored));
 }
 
 void TestObjectRegistrySerializer::testFullRoundTripPreservesOrderAndFields() {
-    objectRegistry  = std::make_unique<GVis::Core::ObjectRegistry>();
-    auto experiment = std::make_shared<GVis::Core::Experiment>("Ordered");
-    auto first      = std::make_shared<GVis::Core::Snapshot>("first", 1.0);
-    auto second     = std::make_shared<GVis::Core::Snapshot>("second", 2.0);
+    objectRegistry  = std::make_unique<GViS::Core::ObjectRegistry>();
+    auto experiment = std::make_shared<GViS::Core::Experiment>("Ordered");
+    auto first      = std::make_shared<GViS::Core::Snapshot>("first", 1.0);
+    auto second     = std::make_shared<GViS::Core::Snapshot>("second", 2.0);
     for (int i = 0; i < 2; ++i) {
-        auto node             = std::make_shared<GVis::Core::DataNode>(nullptr,
+        auto node             = std::make_shared<GViS::Core::DataNode>(nullptr,
                                                                        QString("node%1").arg(i),
                                                                        i,
-                                                                       GVis::Visualize::EntityType::Gas);
+                                                                       GViS::Visualize::EntityType::Gas);
         node->path            = QString("path%1").arg(i);
         node->scheme          = QUuid::createUuid();
-        node->format          = GVis::IO::FileFormat::BIN;
+        node->format          = GViS::IO::FileFormat::BIN;
         node->stats.cellCount = i + 10;
         (i == 0 ? first : second)->addComponent(node);
     }
@@ -404,10 +404,10 @@ void TestObjectRegistrySerializer::testFullRoundTripPreservesOrderAndFields() {
     experiment->addSnapshot(second);
     objectRegistry->registerExperiment(experiment);
 
-    const auto dto = GVis::Core::ObjectRegistrySerializer::toDTO(objectRegistry.get());
+    const auto dto = GViS::Core::ObjectRegistrySerializer::toDTO(objectRegistry.get());
     QVERIFY(dto.has_value());
-    GVis::Core::ObjectRegistry restored;
-    QVERIFY(GVis::Core::ObjectRegistrySerializer::fromDTO(*dto, &restored));
+    GViS::Core::ObjectRegistry restored;
+    QVERIFY(GViS::Core::ObjectRegistrySerializer::fromDTO(*dto, &restored));
 
     const auto restoredExperiment = restored.getExperiment(experiment->id);
     QVERIFY(restoredExperiment);
@@ -424,15 +424,15 @@ void TestObjectRegistrySerializer::testFullRoundTripPreservesOrderAndFields() {
 void TestObjectRegistrySerializer::testDeserializeObjectRegistrySeveralObjects() {
     // Создаем исходные данные и получаем DTO с помощью сериализатора
     initSeveralObjects();
-    auto dto_ptr = GVis::Core::ObjectRegistrySerializer::toDTO(objectRegistry.get());
+    auto dto_ptr = GViS::Core::ObjectRegistrySerializer::toDTO(objectRegistry.get());
     QVERIFY(dto_ptr.has_value());
     auto& dto = dto_ptr.value();
 
     // Создаем совершенно новый чистый реестр для восстановления
-    auto restoredRegistry = std::make_unique<GVis::Core::ObjectRegistry>();
+    auto restoredRegistry = std::make_unique<GViS::Core::ObjectRegistry>();
 
     // Вызываем десериализацию
-    bool success = GVis::Core::ObjectRegistrySerializer::fromDTO(dto, restoredRegistry.get());
+    bool success = GViS::Core::ObjectRegistrySerializer::fromDTO(dto, restoredRegistry.get());
 
     // Проверяем успешность выполнения
     QVERIFY2(success, "fromDTO returned false during deserialization!");
@@ -448,7 +448,7 @@ void TestObjectRegistrySerializer::testDeserializeObjectRegistrySeveralObjects()
         // Поиск эксперимента по имени
         auto expIt = std::find_if(restoredExperiments.cbegin(),
                                   restoredExperiments.cend(),
-                                  [&expectedExpName](const std::shared_ptr<GVis::Core::Experiment>& exp) {
+                                  [&expectedExpName](const std::shared_ptr<GViS::Core::Experiment>& exp) {
                                       return exp && exp->name == expectedExpName;
                                   });
 
@@ -464,7 +464,7 @@ void TestObjectRegistrySerializer::testDeserializeObjectRegistrySeveralObjects()
 
             auto snapIt = std::find_if(exp->snapshots.cbegin(),
                                        exp->snapshots.cend(),
-                                       [&expectedSnapName](const std::shared_ptr<GVis::Core::Snapshot>& snap) {
+                                       [&expectedSnapName](const std::shared_ptr<GViS::Core::Snapshot>& snap) {
                                            return snap && snap->name == expectedSnapName;
                                        });
 
@@ -482,7 +482,7 @@ void TestObjectRegistrySerializer::testDeserializeObjectRegistrySeveralObjects()
 
                 auto nodeIt = std::find_if(snap->components.cbegin(),
                                            snap->components.cend(),
-                                           [&expectedNodeName](const std::shared_ptr<GVis::Core::DataNode>& node) {
+                                           [&expectedNodeName](const std::shared_ptr<GViS::Core::DataNode>& node) {
                                                return node && node->label == expectedNodeName;
                                            });
 

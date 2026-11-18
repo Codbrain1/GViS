@@ -24,18 +24,18 @@ int main(int argc, char* argv[]) {
                                true); // до QApplication — многооконность
     QApplication app(argc, argv);
 
-    const QString dataPath = "D:/NIR/NIR_6_semestr/GVis/Sandbox/TEST_DATA/TF250_v2/G_    0.bin";
+    const QString dataPath = "D:/NIR/NIR_6_semestr/GViS/Sandbox/TEST_DATA/TF250_v2/G_    0.bin";
 
     // ================ Чтение файла — без изменений от вашего пайплайна ================
-    auto reader = GVis::IO::createReader(GVis::IO::FileFormat::BIN);
+    auto reader = GViS::IO::createReader(GViS::IO::FileFormat::BIN);
     if (!reader) {
         qCritical() << "Failed to create reader";
         return 1;
     }
-    reader->setPolicy(GVis::IO::FilePolicy::ForceStandart);
+    reader->setPolicy(GViS::IO::FilePolicy::ForceStandart);
 
-    auto scheme = GVis::IO::SchemeFactory::createScheme_v2(GVis::Visualize::EntityType::Gas,
-                                                           GVis::IO::FileFormat::BIN);
+    auto scheme = GViS::IO::SchemeFactory::createScheme_v2(GViS::Visualize::EntityType::Gas,
+                                                           GViS::IO::FileFormat::BIN);
 
     QElapsedTimer readTimer;
     readTimer.start();
@@ -55,16 +55,16 @@ int main(int argc, char* argv[]) {
     qDebug() << "Точек прочитано:" << polyData->GetPoints()->GetNumberOfPoints();
 
     // ================ Оборачиваем в DataNode — узел модели данных ================
-    auto dataNode = std::make_shared<GVis::Core::DataNode>(
+    auto dataNode = std::make_shared<GViS::Core::DataNode>(
         vtkSmartPointer<vtkDataSet>(polyData), // vtkPolyData наследует vtkDataSet
         "DarkMatter snapshot 0",
         0.0,
-        GVis::Visualize::EntityType::Gas);
+        GViS::Visualize::EntityType::Gas);
 
     // ================ Создаём рендер-слой через LayerFactory ================
-    auto renderLayer = GVis::Visualize::Layers::LayerFactory::createLayerRenderer(
+    auto renderLayer = GViS::Visualize::Layers::LayerFactory::createLayerRenderer(
         dataNode,
-        GVis::Visualize::Layers::RenderLayerType::SPH);
+        GViS::Visualize::Layers::RenderLayerType::SPH);
 
     if (!renderLayer) {
         qCritical() << "Failed to create render layer";
@@ -72,7 +72,7 @@ int main(int argc, char* argv[]) {
     }
 
     // ---- настройки слоя — конкретно ParticlePointsLayerSettings ----
-    auto layerSettings = std::make_shared<GVis::Visualize::Layers::SPHPointsLayerSettings>();
+    auto layerSettings = std::make_shared<GViS::Visualize::Layers::SPHPointsLayerSettings>();
     layerSettings->setColorByField(
         "Density"); // если поля Mass/Density нет — просто одноцветные точки
     layerSettings->setUseLogScale(false);
@@ -82,13 +82,13 @@ int main(int argc, char* argv[]) {
 
     // ================ Создаём View через ViewFactory ================
     auto view =
-        GVis::Visualize::Views::ViewFactory::createView(GVis::Visualize::Views::ViewType::OpenGL3D);
+        GViS::Visualize::Views::ViewFactory::createView(GViS::Visualize::Views::ViewType::OpenGL3D);
     if (!view) {
         qCritical() << "Failed to create view";
         return 1;
     }
 
-    auto view3d = std::dynamic_pointer_cast<GVis::Visualize::Views::AbstractView3D>(view);
+    auto view3d = std::dynamic_pointer_cast<GViS::Visualize::Views::AbstractView3D>(view);
     if (!view3d) {
         qCritical() << "View is not a 3D view";
         return 1;

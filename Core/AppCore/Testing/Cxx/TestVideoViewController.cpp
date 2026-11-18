@@ -9,9 +9,9 @@
 #include "Core/ViewManager/ViewManager.h"
 #include "Session/Reflection.h"
 
-using namespace GVis::Core;
-using namespace GVis::Core::Controllers;
-using GVis::Visualize::Views::ViewType;
+using namespace GViS::Core;
+using namespace GViS::Core::Controllers;
+using GViS::Visualize::Views::ViewType;
 
 class TestVideoViewController : public QObject {
     Q_OBJECT
@@ -69,8 +69,8 @@ class TestVideoViewController : public QObject {
             std::make_shared<DataNode>(vtkSmartPointer<vtkPolyData>::New(), "First", 1.0);
         auto lastNode =
             std::make_shared<DataNode>(vtkSmartPointer<vtkPolyData>::New(), "Last", 2.0);
-        firstNode->type = GVis::Visualize::EntityType::Gas;
-        lastNode->type  = GVis::Visualize::EntityType::Gas;
+        firstNode->type = GViS::Visualize::EntityType::Gas;
+        lastNode->type  = GViS::Visualize::EntityType::Gas;
         firstSnapshot->addComponent(firstNode);
         lastSnapshot->addComponent(lastNode);
         experiment->addSnapshot(firstSnapshot);
@@ -93,9 +93,9 @@ class TestVideoViewController : public QObject {
         playerLayer->getSettings()->setColorByField("RestoredField");
         const auto stateWithLayerSettings = video->playerState();
         QCOMPARE(stateWithLayerSettings.layers.size(), 1);
-        const auto serializedState = GVis::Reflection::gadgetToVariantMap(stateWithLayerSettings);
+        const auto serializedState = GViS::Reflection::gadgetToVariantMap(stateWithLayerSettings);
         const auto restoredState =
-            GVis::Reflection::variantMapToGadget<GVis::Session::VideoPlayerDTO>(serializedState);
+            GViS::Reflection::variantMapToGadget<GViS::Session::VideoPlayerDTO>(serializedState);
         QCOMPARE(restoredState, stateWithLayerSettings);
         for (const auto& layerId : previousPlayerLayerIds)
             layers->removeLayer(layerId);
@@ -120,9 +120,9 @@ class TestVideoViewController : public QObject {
         auto first = std::make_shared<DataNode>(vtkSmartPointer<vtkPolyData>::New(), "First", 1.0);
         auto last  = std::make_shared<DataNode>(vtkSmartPointer<vtkPolyData>::New(), "Last", 5.0);
         auto unloaded  = std::make_shared<DataNode>(nullptr, "Unloaded", 5.0);
-        first->type    = GVis::Visualize::EntityType::Gas;
-        last->type     = GVis::Visualize::EntityType::Gas;
-        unloaded->type = GVis::Visualize::EntityType::Stars;
+        first->type    = GViS::Visualize::EntityType::Gas;
+        last->type     = GViS::Visualize::EntityType::Gas;
+        unloaded->type = GViS::Visualize::EntityType::Stars;
         early->addComponent(first);
         late->addComponent(last);
         late->addComponent(unloaded);
@@ -143,7 +143,7 @@ class TestVideoViewController : public QObject {
         QVERIFY(loadSpy.count() >= 1);
         QCOMPARE(loadSpy.first().first().value<QUuid>(), unloaded->id);
         auto                                            allLayers = layers->getAllLayers();
-        std::shared_ptr<GVis::Visualize::Layers::Layer> playback;
+        std::shared_ptr<GViS::Visualize::Layers::Layer> playback;
         for (const auto& layer : allLayers)
             if (layer->layerId() != sourceLayers.front()->layerId() &&
                 layer->dataNodeId() == first->id)

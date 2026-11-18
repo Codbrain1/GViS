@@ -19,7 +19,7 @@ Implementations/SPH/SPHPointsLayerSettings.h
 
 include(GenerateExportHeader)
 add_library(Layers SHARED)
-add_library(GVis::VisualizeLayers ALIAS Layers)
+add_library(GViS::VisualizeLayers ALIAS Layers)
 generate_export_header(Layers)
 
 target_sources(Layers PRIVATE
@@ -39,9 +39,9 @@ target_include_directories(Layers PUBLIC
 )
 target_link_libraries(Layers PUBLIC
             project_config
-            GVis::VisualizeColorMapManager
-            GVis::Common
-            GVis::Physics
+            GViS::VisualizeColorMapManager
+            GViS::Common
+            GViS::Physics
             Qt6::Core
             Qt6::OpenGL
             Qt6::Core

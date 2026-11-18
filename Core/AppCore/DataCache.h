@@ -6,14 +6,13 @@
 #include "IO/ReadResult.h"
 #include <memory>
 
-
-namespace GVis::Core {
+namespace GViS::Core {
 class DataManager;
 class ObjectRegistry;
 class FileSchemeRegistry;
-} // namespace GVis::Core
+} // namespace GViS::Core
 
-namespace GVis::Core::Controllers {
+namespace GViS::Core::Controllers {
 
 class DataCache final : public QObject {
     Q_OBJECT
@@ -47,4 +46,4 @@ class DataCache final : public QObject {
     QMap<QUuid, LoadingTask>  m_tasks;
 };
 
-} // namespace GVis::Core::Controllers
+} // namespace GViS::Core::Controllers

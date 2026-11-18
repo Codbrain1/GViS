@@ -12,7 +12,7 @@
 #include "Common/Structures/FileSchemeStructures.h"
 #include "IO/BIN/BINReader.h"
 
-using namespace GVis::IO;
+using namespace GViS::IO;
 
 class TestBINReaderFailures : public QObject {
     Q_OBJECT

@@ -13,7 +13,7 @@
 #include "Common/Structures/ObjectRegistryStructures.h" // Путь к файлу с DataNode
 #include "Core/ObjectRegistry/ObjectRegistry.h"
 
-using namespace GVis::Core;
+using namespace GViS::Core;
 
 class TestRemovalNode : public QObject {
     Q_OBJECT
@@ -110,7 +110,7 @@ class TestRemovalNode : public QObject {
 
 // Не забудь зарегистрировать shared_ptr в метасистеме,
 // если это еще не сделано в основном коде, иначе QSignalSpy его не вытащит.
-Q_DECLARE_METATYPE(std::shared_ptr<GVis::Core::DataNode>)
+Q_DECLARE_METATYPE(std::shared_ptr<GViS::Core::DataNode>)
 
 QTEST_MAIN(TestRemovalNode)
 #include "TestRemovalNode.moc"

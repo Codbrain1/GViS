@@ -2,7 +2,7 @@
 #include "AutoSettingsToolBar.h"
 #include <QWidget>
 
-namespace GVis::UI {
+namespace GViS::UI {
 
 class ViewContainerWidget : public QWidget {
     Q_OBJECT
@@ -28,4 +28,4 @@ class ViewContainerWidget : public QWidget {
     QWidget*             m_viewWidget = nullptr;
 };
 
-} // namespace GVis::UI
+} // namespace GViS::UI

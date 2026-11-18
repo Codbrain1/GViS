@@ -2,7 +2,7 @@
 #include "AxisRenderer.h"
 #include "Physics/DimensionConverter/PhysicalUnits.h"
 
-namespace GVis::Visualize::Views::View3D {
+namespace GViS::Visualize::Views::View3D {
 
 AxisRenderer::AxisRenderer(QObject* parent) : QObject(parent) {
 }
@@ -177,4 +177,4 @@ QVector<AxisTick> AxisRenderer::buildTicks(AxisSettings* settings, float extent)
     return ticks;
 }
 
-} // namespace GVis::Visualize::Views::View3D
+} // namespace GViS::Visualize::Views::View3D

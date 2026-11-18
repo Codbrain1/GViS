@@ -5,7 +5,7 @@
 #include <qstringview.h>
 #include <optional>
 
-namespace GVis::Session {
+namespace GViS::Session {
 bool SessionStorage::save(const QString& filePath, const QByteArray& data) {
     QFile file(filePath);
     if (!file.open(QIODevice::WriteOnly))
@@ -20,4 +20,4 @@ std::optional<QByteArray> SessionStorage::load(const QString& filePath) {
     }
     return file.readAll();
 }
-} // namespace GVis::Session
+} // namespace GViS::Session

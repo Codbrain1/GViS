@@ -6,7 +6,7 @@
 // Настройки для BindingRendererLayer — связи/бонды между частицами
 // (например SPH-соседи, орбитальные связи, molecular bonds — в зависимости от домена)
 // ============================================================
-namespace GVis::Visualize::Layers {
+namespace GViS::Visualize::Layers {
 
 class LAYERS_EXPORT BinningPointsLayerSettings : public LayerSettings {
     Q_OBJECT
@@ -47,4 +47,4 @@ public:
     bool   m_fadeByLength = true;
     QColor m_lineColor    = QColor(200, 200, 200, 120);
 };
-} // namespace GVis::Visualize::Layers
+} // namespace GViS::Visualize::Layers

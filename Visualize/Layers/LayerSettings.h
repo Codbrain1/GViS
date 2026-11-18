@@ -10,7 +10,7 @@
 #include <algorithm>
 #include <limits>
 
-namespace GVis::Visualize::Layers {
+namespace GViS::Visualize::Layers {
 
 class LAYERS_EXPORT LayerSettings : public QObject {
     Q_OBJECT
@@ -409,4 +409,4 @@ class LAYERS_EXPORT LayerSettings : public QObject {
     bool m_hasPhysicalGamma = true;
 };
 
-} // namespace GVis::Visualize::Layers
+} // namespace GViS::Visualize::Layers

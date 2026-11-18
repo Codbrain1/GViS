@@ -25,8 +25,7 @@
 #include "VideoController.h"
 #include "ViewController.h"
 
-
-namespace GVis::Core {
+namespace GViS::Core {
 AppCore::AppCore(QObject* parent) : QObject(parent) {
     // 1. Инициализация менеджеров (Базовый слой)
     m_taskManager        = std::make_unique<TaskManager>();
@@ -73,7 +72,7 @@ AppCore::AppCore(QObject* parent) : QObject(parent) {
         });
     // 3. Инициализация моделей данных
     m_dataTreeModel =
-        std::make_unique<GVis::Models::DataTreeModel>(m_objectRegistry.get(), m_layerManager.get());
+        std::make_unique<GViS::Models::DataTreeModel>(m_objectRegistry.get(), m_layerManager.get());
 }
 
 AppCore::~AppCore() = default;
@@ -152,4 +151,4 @@ DataManager* AppCore::dataManager() const {
     return m_dataManager.get();
 }
 
-} // namespace GVis::Core
+} // namespace GViS::Core

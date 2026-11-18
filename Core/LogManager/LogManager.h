@@ -1,9 +1,9 @@
 #pragma once
 
-namespace GVis::Core {
+namespace GViS::Core {
 class LogManager {
   public:
     static void setup();
     static void setVerbose(bool enabled);
 };
-} // namespace GVis::Core
+} // namespace GViS::Core

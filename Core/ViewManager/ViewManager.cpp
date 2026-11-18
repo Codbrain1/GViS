@@ -7,13 +7,12 @@
 #include "Physics/DimensionConverter/PhysicalUnits.h"
 #include <memory>
 
-
-namespace GVis::Core {
+namespace GViS::Core {
 ViewManager::ViewManager(QObject* parent) : QObject(parent) {
 }
 
 QUuid ViewManager::createView(Visualize::Views::ViewType type) {
-    auto newView = GVis::Visualize::Views::ViewFactory::createView(type);
+    auto newView = GViS::Visualize::Views::ViewFactory::createView(type);
     // Проверка на случай неудачного создания или нереализованного типа (как Widget_2D сейчас)
     if (!newView) {
         return QUuid();
@@ -163,4 +162,4 @@ void ViewManager::setActiveExperiment(const Physics::PhysicalUnitsProfile& profi
     for (auto& [id, view] : m_views)
         applyActiveExperimentToView(view);
 }
-} // namespace GVis::Core
+} // namespace GViS::Core

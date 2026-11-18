@@ -5,7 +5,7 @@
 #include <QString>
 #include <optional>
 
-namespace GVis::Session {
+namespace GViS::Session {
 
 class ProjectFormatFactory {
   public:
@@ -15,4 +15,4 @@ class ProjectFormatFactory {
     static QString                      name(ProjectFormat format);
 };
 
-} // namespace GVis::Session
+} // namespace GViS::Session

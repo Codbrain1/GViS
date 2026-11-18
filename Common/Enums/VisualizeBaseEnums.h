@@ -4,7 +4,7 @@
 #include <optional>
 #include <qcontainerfwd.h>
 
-namespace GVis::Visualize
+namespace GViS::Visualize
 {
 Q_NAMESPACE
 
@@ -22,13 +22,13 @@ inline QString entitytypeToString(EntityType type)
 {
   switch (type)
   {
-  case GVis::Visualize::EntityType::DarkMatter:
+  case GViS::Visualize::EntityType::DarkMatter:
     return "DarkMatter";
-  case GVis::Visualize::EntityType::Gas:
+  case GViS::Visualize::EntityType::Gas:
     return "Gas";
-  case GVis::Visualize::EntityType::Stars:
+  case GViS::Visualize::EntityType::Stars:
     return "Stars";
-  case GVis::Visualize::EntityType::Mixed:
+  case GViS::Visualize::EntityType::Mixed:
     return "Mixed";
   default:
     return "Unknown";
@@ -48,4 +48,4 @@ inline EntityType entitytypeFromString(const QString &s)
     return EntityType::Mixed;
   return EntityType::Unknown;
 }
-} // namespace GVis::Visualize
+} // namespace GViS::Visualize

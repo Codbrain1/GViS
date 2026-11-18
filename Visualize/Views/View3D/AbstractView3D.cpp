@@ -7,7 +7,7 @@
 #include "View3DSettings.h"
 #include <cmath>
 
-namespace GVis::Visualize::Views {
+namespace GViS::Visualize::Views {
 
 QVariantMap AbstractView3D::getSettingsToVariantMap() const {
     if (!m_settings)
@@ -63,4 +63,4 @@ bool AbstractView3D::setSettingsFromVariantMap(const QVariantMap& settings) {
     return applied;
 }
 
-} // namespace GVis::Visualize::Views
+} // namespace GViS::Visualize::Views

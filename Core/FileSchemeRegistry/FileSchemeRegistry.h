@@ -8,7 +8,7 @@
 #include "IO/SchemePresets.h"
 #include <optional>
 
-namespace GVis::Core {
+namespace GViS::Core {
 class FileSchemeRegistry : public QObject {
     Q_OBJECT
   public:
@@ -54,4 +54,4 @@ class FileSchemeRegistry : public QObject {
     QMap<QUuid, IO::WriteSchemeUI> m_writeSchemes;
     QHash<IO::PresetKey, QUuid>    m_userOverrideIndexReadScheme;
 };
-} // namespace GVis::Core
+} // namespace GViS::Core

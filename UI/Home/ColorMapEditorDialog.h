@@ -11,13 +11,13 @@ class ColorMapEditorDialog;
 }
 QT_END_NAMESPACE
 
-namespace GVis::UI {
+namespace GViS::UI {
 class ColorMapEditorDialog : public QDialog {
     Q_OBJECT
   public:
     enum class Mode { Create, Edit };
 
-    explicit ColorMapEditorDialog(const GVis::Visualize::ColorMap& baseMap,
+    explicit ColorMapEditorDialog(const GViS::Visualize::ColorMap& baseMap,
                                   Mode                             mode,
                                   QWidget*                         parent = nullptr);
     ~ColorMapEditorDialog();
@@ -26,7 +26,7 @@ class ColorMapEditorDialog : public QDialog {
     void savePaletteRequested(const Visualize::ColorMap& map, const QString& filePath);
     void loadPaletteRequested(const QString& filePath);
   public slots:
-    void onPaletteLoaded(GVis::Visualize::ColorMap colorMap);
+    void onPaletteLoaded(GViS::Visualize::ColorMap colorMap);
   private slots:
     void on_addButton_clicked();
     void on_removeButton_clicked();
@@ -42,4 +42,4 @@ class ColorMapEditorDialog : public QDialog {
     Mode                      m_mode;
     void                      populateTable();
 };
-} // namespace GVis::UI
+} // namespace GViS::UI

@@ -12,17 +12,17 @@ add_subdirectory(StyleManager)
 add_subdirectory(FileSchemeRegistry)
 
 add_library(Core INTERFACE)
-add_library(GVis::Core ALIAS Core)
+add_library(GViS::Core ALIAS Core)
 target_include_directories(Core INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/..)
 target_link_libraries(Core INTERFACE
             project_config
             TaskManager
-            GVis::CoreObjectRegistry
+            GViS::CoreObjectRegistry
             DataManager
             LogManager
-            GVis::CoreLayerManager
+            GViS::CoreLayerManager
             AppCore
-            GVis::CoreViewManager
+            GViS::CoreViewManager
             StyleManager
             # VideoExportManager
             FileSchemeRegistry

@@ -2,7 +2,7 @@
 #include "Common/Logger/Logger.h"
 #include <vtkGenericOpenGLRenderWindow.h>
 
-namespace GVis::Visualize {
+namespace GViS::Visualize {
 
 VideoExporter::VideoExporter(VtkView* vtkview, QObject* parent)
     : QObject(parent), m_vtkView(vtkview) {
@@ -55,4 +55,4 @@ void VideoExporter::finishExport() {
     }
 }
 
-} // namespace GVis::Visualize
+} // namespace GViS::Visualize

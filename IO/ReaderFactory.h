@@ -6,12 +6,12 @@
 #include <qcontainerfwd.h>
 #include <memory>
 
-namespace GVis::IO {
+namespace GViS::IO {
 std::unique_ptr<IReader> createReader(FileFormat format); // строго задаем формат
 std::unique_ptr<IWriter> createWriter(FileFormat format); // строго задаем формат файла при записи
 
 namespace Utils {
 FileFormat                  getFormat(const QString& path);
-GVis::Visualize::EntityType getEntityType(const QString& name);
+GViS::Visualize::EntityType getEntityType(const QString& name);
 }; // namespace Utils
-} // namespace GVis::IO
+} // namespace GViS::IO

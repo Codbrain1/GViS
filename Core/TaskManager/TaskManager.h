@@ -10,7 +10,7 @@
 #include <type_traits>
 #include <utility>
 
-namespace GVis::Core {
+namespace GViS::Core {
 class TaskManager : public QObject {
     Q_OBJECT
   public:
@@ -51,4 +51,4 @@ class TaskManager : public QObject {
     QThreadPool m_io_pool_batch;
     QThreadPool m_io_pool_urgent;
 };
-} // namespace GVis::Core
+} // namespace GViS::Core

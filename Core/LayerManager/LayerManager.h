@@ -12,7 +12,7 @@
 #include "layermanager_export.h"
 #include <memory>
 
-namespace GVis::Core {
+namespace GViS::Core {
 class LAYERMANAGER_EXPORT LayerManager : public QObject {
     Q_OBJECT
   public:
@@ -68,4 +68,4 @@ class LAYERMANAGER_EXPORT LayerManager : public QObject {
     QMap<Visualize::Views::AbstractView*, QList<QUuid>> m_viewToLayers;
 };
 
-} // namespace GVis::Core
+} // namespace GViS::Core

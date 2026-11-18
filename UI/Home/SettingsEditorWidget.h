@@ -8,10 +8,10 @@ class QMetaProperty;
 class QPushButton;
 class QColor;
 
-namespace GVis::Visualize::Layers {
+namespace GViS::Visualize::Layers {
 class LayerSettings;
 }
-namespace GVis::UI {
+namespace GViS::UI {
 class SettingsEditorWidget : public QWidget {
     Q_OBJECT
   public:
@@ -19,7 +19,7 @@ class SettingsEditorWidget : public QWidget {
     ~SettingsEditorWidget() = default;
 
     // Назначает текущий объект настроек и полностью перестраивает UI формы
-    void setSettings(GVis::Visualize::Layers::LayerSettings* settings);
+    void setSettings(GViS::Visualize::Layers::LayerSettings* settings);
 
   private:
     void createRowForProperty(const QMetaProperty& prop);
@@ -28,7 +28,7 @@ class SettingsEditorWidget : public QWidget {
     void clearEditor();
 
     QFormLayout*                                     m_layout = nullptr;
-    QPointer<GVis::Visualize::Layers::LayerSettings> m_settings;
+    QPointer<GViS::Visualize::Layers::LayerSettings> m_settings;
     QMap<QString, QWidget*>                          m_editors;
 };
-} // namespace GVis::UI
+} // namespace GViS::UI

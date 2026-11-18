@@ -1,4 +1,4 @@
-# 🌌 GVis
+# 🌌 GViS
 
 **High-Performance Desktop Visualizer for Astrophysical Galaxy Simulations & SPH Particle Data**
 
@@ -16,12 +16,12 @@
 
 ## 🔭 Overview
 
-**GVis** (*Galaxy Visualizer*) is a native C++20/Qt 6/OpenGL desktop application engineered for interactive 3D exploration and physical analysis of large-scale astrophysical N-body and **Smoothed Particle Hydrodynamics (SPH)** simulations.
+**GViS** (*Galaxy Visualizer*) is a native C++20/Qt 6/OpenGL desktop application engineered for interactive 3D exploration and physical analysis of large-scale astrophysical N-body and **Smoothed Particle Hydrodynamics (SPH)** simulations.
 
-Unlike script-based plotting libraries in Python (`matplotlib`, `yt`) that render static frames via code, **GVis** provides real-time interactive visualization powered by kernel splatting, physical weight normalization, and logarithmic transfer functions directly on the GPU via a custom multi-pass OpenGL 3.3 Core pipeline—allowing researchers to rotate, slice, and animate multi-million-particle galaxy evolutions on the fly.
+Unlike script-based plotting libraries in Python (`matplotlib`, `yt`) that render static frames via code, **GViS** provides real-time interactive visualization powered by kernel splatting, physical weight normalization, and logarithmic transfer functions directly on the GPU via a custom multi-pass OpenGL 3.3 Core pipeline—allowing researchers to rotate, slice, and animate multi-million-particle galaxy evolutions on the fly.
 
 <p align="center">
-  <img src="Docs/Images/demo_preview.png" alt="GVis Interactive SPH Rendering" width="85%">
+  <img src="Docs/Images/demo_preview.png" alt="GViS Interactive SPH Rendering" width="85%">
 </p>
 
 ---
@@ -56,8 +56,8 @@ Unlike script-based plotting libraries in Python (`matplotlib`, `yt`) that rende
 ## 🏗️ Project Architecture
 
 ```text
-GVis/
-├── app/GVisDesktop/       # Application entry point, QSS styling & i18n initialization
+GViS/
+├── app/GViSDesktop/       # Application entry point, QSS styling & i18n initialization
 ├── Common/                  # Shared enums, interfaces (IReader, IRenderLayer), DTOs & Logger
 ├── Core/
 │   ├── AppCore/             # Application controllers (Import, Layer, View, Video, Project, Experiment)
@@ -95,8 +95,8 @@ GVis/
 
 ```bash
 # 1. Clone the repository
-git clone [https://github.com/Codbrain1/GVis.git](https://github.com/Codbrain1/GVis.git)
-cd GVis
+git clone [https://github.com/Codbrain1/GViS.git](https://github.com/Codbrain1/GViS.git)
+cd GViS
 
 # 2. Configure with CMake
 cmake -B build -DCMAKE_BUILD_TYPE=Release
@@ -121,7 +121,7 @@ cmake --build build --parallel
 
 # 🌌 Обзор проекта (RU)
 
-**GVis** — высокопроизводительное десктопное приложение на C++20, Qt 6 и OpenGL 3.3 Core для интерактивной 3D-визуализации и физического анализа результатов астрофизического моделирования галактик и **SPH-данных (Smoothed Particle Hydrodynamics)**.
+**GViS** — высокопроизводительное десктопное приложение на C++20, Qt 6 и OpenGL 3.3 Core для интерактивной 3D-визуализации и физического анализа результатов астрофизического моделирования галактик и **SPH-данных (Smoothed Particle Hydrodynamics)**.
 
 ### Ключевые возможности
 
@@ -155,12 +155,12 @@ Distributed under the **GNU General Public License v3.0 (GPLv3)**. See `LICENSE`
 
 ## 📌 Citation
 
-If you use **GVis** in your academic research or publications, please cite it as follows:
+If you use **GViS** in your academic research or publications, please cite it as follows:
 
 ```bibtex
-@software{GVis2026,
+@software{GViS2026,
   author = {Shorkin Maxim},
-  title = {GVis: High-Performance Desktop Visualizer for Astrophysical Galaxy Simulations},
+  title = {GViS: High-Performance Desktop Visualizer for Astrophysical Galaxy Simulations},
   year = {2026},
-  url = {[https://github.com/Codbrain1/GVis](https://github.com/Codbrain1/GVis)}
+  url = {[https://github.com/Codbrain1/GViS](https://github.com/Codbrain1/GViS)}
 }

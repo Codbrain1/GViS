@@ -1,7 +1,7 @@
 #pragma once
 #include <QMetaType>
 
-namespace GVis::Physics {
+namespace GViS::Physics {
 struct PhysicalUnitsProfile {
     Q_GADGET
     Q_PROPERTY(double Km MEMBER Km)
@@ -16,4 +16,4 @@ struct PhysicalUnitsProfile {
     bool   haveGamma = true;
 };
 
-} // namespace GVis::Physics
+} // namespace GViS::Physics

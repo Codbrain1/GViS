@@ -47,7 +47,7 @@
 #include <vtkDataSetAttributes.h>
 #include <vtkType.h>
 
-namespace GVis::UI {
+namespace GViS::UI {
 MainWindow::MainWindow(Core::AppCore* app, QWidget* parent)
     : QMainWindow(parent), m_app(app), ui(new Ui::MainWindow) {
     // инициализируем ui файл
@@ -85,7 +85,7 @@ MainWindow::MainWindow(Core::AppCore* app, QWidget* parent)
     // m_exportProgressDialog->reset(); // Скрываем по умолчанию
 
     {
-        using namespace GVis::Visualize::Views::View3D;
+        using namespace GViS::Visualize::Views::View3D;
         cameraComboBox = new QComboBox(this);
         cameraComboBox->addItem("Сверху", QVariant::fromValue(CameraViewType::XY_Top));
         cameraComboBox->addItem("Спереди", QVariant::fromValue(CameraViewType::XZ_Front));
@@ -140,7 +140,7 @@ void MainWindow::handleViewCreated(const QUuid& viewId, Visualize::Views::ViewTy
                       QDockWidget::DockWidgetFloatable);
     dock->setWidget(viewWidget);
 
-    if (auto view3D = dynamic_cast<GVis::Visualize::Views::AbstractView3D*>(view)) {
+    if (auto view3D = dynamic_cast<GViS::Visualize::Views::AbstractView3D*>(view)) {
         auto* container = new UI::ViewContainerWidget(viewWidget, view3D->sceneSettings(), dock);
         dock->setWidget(container);
     }
@@ -196,19 +196,19 @@ void MainWindow::setupSlots() {
     // обработчик снизу вверх, например если потребуется синхронизировать несколько окон (одновременно
     // крутить)
     connect(m_app->viewController(),
-            &GVis::Core::Controllers::ViewController::sceneUpdateRequested,
+            &GViS::Core::Controllers::ViewController::sceneUpdateRequested,
             this,
             &MainWindow::handleRenderUpdate,
             Qt::QueuedConnection);
     connect(m_app->dataTreeModel(),
-            &GVis::Models::DataTreeModel::sceneUpdateRequested,
+            &GViS::Models::DataTreeModel::sceneUpdateRequested,
             this,
             &UI::MainWindow::handleRenderUpdate,
             Qt::QueuedConnection);
     connect(m_app->dataManager(),
-            &GVis::Core::DataManager::fileReadFailed,
+            &GViS::Core::DataManager::fileReadFailed,
             this,
-            [this](const QUuid&, const GVis::IO::ReadResult& result, GVis::IO::ImportRole) {
+            [this](const QUuid&, const GViS::IO::ReadResult& result, GViS::IO::ImportRole) {
                 const QString fileName = QFileInfo(result.path).fileName();
                 m_toastNotification->showError(
                     tr("Ошибка чтения файла"),
@@ -265,23 +265,23 @@ void MainWindow::setupSlots() {
     connect(ui->menu_bg, &QMenu::triggered, this, &MainWindow::handleBackgroundChange);
 
     connect(m_app->projectController(),
-            &GVis::Core::Controllers::ProjectController::requestSavePathFromUI,
+            &GViS::Core::Controllers::ProjectController::requestSavePathFromUI,
             this,
             &MainWindow::handleSavePathSelection);
 
     // 2. Обновление заголовка окна при изменении состояния сессии
     connect(m_app->projectController(),
-            &GVis::Core::Controllers::ProjectController::sessionStateChanged,
+            &GViS::Core::Controllers::ProjectController::sessionStateChanged,
             this,
             &MainWindow::handleSessionStateChange);
 
     // ---- РАБОТА С ОКНАМИ ----
     connect(m_app->viewController(),
-            &GVis::Core::Controllers::ViewController::viewCreated,
+            &GViS::Core::Controllers::ViewController::viewCreated,
             this,
             &MainWindow::handleViewCreated);
     connect(m_app->viewController(),
-            &GVis::Core::Controllers::ViewController::viewRemoved,
+            &GViS::Core::Controllers::ViewController::viewRemoved,
             this,
             &MainWindow::handleViewRemoved);
     connect(m_layerExplorerWidget.get(),
@@ -322,8 +322,8 @@ void MainWindow::handleLayerSelectionChange(const QUuid& layerId) {
 //         error."));
 //     }
 // }
-void MainWindow::handleSessionStateChange(const GVis::Session::CurrentSession& session) {
-    QString title = QString("GVis - %1%2")
+void MainWindow::handleSessionStateChange(const GViS::Session::CurrentSession& session) {
+    QString title = QString("GViS - %1%2")
                         .arg(session.projectName.isEmpty() ? tr("New Project") : session.projectName)
                         .arg(session.isDirty ? "*" : ""); // Звездочка, если есть несохраненные изменения
     setWindowTitle(title);
@@ -332,7 +332,7 @@ void MainWindow::handleSessionStateChange(const GVis::Session::CurrentSession& s
 }
 void MainWindow::handleSavePathSelection() {
     QString path =
-        QFileDialog::getSaveFileName(this, tr("Save project as..."), "", tr("GVis Project (*.gvs)"));
+        QFileDialog::getSaveFileName(this, tr("Save project as..."), "", tr("GViS Project (*.gvs)"));
     if (!path.isEmpty()) {
         // Устанавливаем путь в стейт и пробуем сохранить еще раз
         m_app->projectController()->saveCurrentProjectAs(path);
@@ -420,10 +420,10 @@ void MainWindow::handleProjectOpen() {
     QString path = QFileDialog::getOpenFileName(this,
                                                 tr("Open project..."),
                                                 "",
-                                                tr("GVis Project (*.gvs);;All Files (*)"));
+                                                tr("GViS Project (*.gvs);;All Files (*)"));
 
     if (!path.isEmpty()) {
         m_app->projectController()->openProject(path);
     }
 }
-} // namespace GVis::UI
+} // namespace GViS::UI

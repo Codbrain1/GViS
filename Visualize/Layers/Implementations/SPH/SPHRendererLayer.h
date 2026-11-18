@@ -9,7 +9,7 @@
 #include "SPHPointsLayerSettings.h"
 #include <memory>
 
-namespace GVis::Visualize::Layers {
+namespace GViS::Visualize::Layers {
 
 class SPHRendererLayer : public IOpenGLRenderLayer {
   public:
@@ -85,4 +85,4 @@ class SPHRendererLayer : public IOpenGLRenderLayer {
     std::shared_ptr<SPHPointsLayerSettings> m_settings;
 };
 
-} // namespace GVis::Visualize::Layers
+} // namespace GViS::Visualize::Layers

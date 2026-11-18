@@ -27,7 +27,7 @@
 #include <cmath>
 #include <optional>
 
-namespace GVis::Core::Controllers {
+namespace GViS::Core::Controllers {
 
 ImportController::ImportController(Core::DataManager*        dataManager,
                                    Core::ObjectRegistry*     objectRegistry,
@@ -149,12 +149,12 @@ void ImportController::loadRestoredNodes() {
 
 std::expected<Physics::PhysicalUnitsProfile, IO::ReadStatus>
 ImportController::importIniFile(const QString& filePath) {
-    return GVis::IO::importIniFile(filePath);
+    return GViS::IO::importIniFile(filePath);
 }
 
 void ImportController::handleFileReady(const QUuid&         taskId,
-                                       GVis::IO::ReadResult result,
-                                       GVis::IO::ImportRole role) {
+                                       GViS::IO::ReadResult result,
+                                       GViS::IO::ImportRole role) {
     if (!m_activeTasks.contains(taskId) || role != IO::ImportRole::ProjectData)
         return;
 
@@ -174,7 +174,7 @@ void ImportController::handleFileReady(const QUuid&         taskId,
     auto node =
         std::make_shared<Core::DataNode>(result.data,
                                          fileName,
-                                         GVis::Physics::Math::calculateTimestamp(result.timestamp),
+                                         GViS::Physics::Math::calculateTimestamp(result.timestamp),
                                          type);
 
     // Проверяем: мы восстанавливаем сохраненный проект или импортируем новые файлы?
@@ -246,4 +246,4 @@ std::shared_ptr<Core::Snapshot> ImportController::findOrCreateSnapshot(const QSt
     return newContainer;
 }
 
-} // namespace GVis::Core::Controllers
+} // namespace GViS::Core::Controllers

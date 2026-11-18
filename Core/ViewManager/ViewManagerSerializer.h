@@ -2,11 +2,11 @@
 #include "Core/ViewManager/ViewManager.h"
 #include "viewmanager_export.h"
 
-namespace GVis::Core {
+namespace GViS::Core {
 class ViewManager;
 }
 
-namespace GVis::Core {
+namespace GViS::Core {
 class VIEWMANAGER_EXPORT ViewManagerSerializer {
   public:
     static std::optional<Session::ViewManagerDTO> toDTO(Core::ViewManager* viewManager);
@@ -16,4 +16,4 @@ class VIEWMANAGER_EXPORT ViewManagerSerializer {
     static std::optional<Session::ViewDTO> toDTO(const std::shared_ptr<Visualize::Views::AbstractView> view);
     static std::shared_ptr<Visualize::Views::AbstractView> fromDTO(const Session::ViewDTO& dto);
 };
-} // namespace GVis::Core
+} // namespace GViS::Core

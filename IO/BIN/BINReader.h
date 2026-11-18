@@ -14,7 +14,7 @@
 #include <cstddef>
 #include <functional>
 
-namespace GVis::IO {
+namespace GViS::IO {
 class BINReader : public IReader {
   public:
     ~BINReader() override;
@@ -123,4 +123,4 @@ void BINReader::processAttribChunk(const uchar* srcBuffer,
         dst += nComp;
     }
 }
-} // namespace GVis::IO
+} // namespace GViS::IO

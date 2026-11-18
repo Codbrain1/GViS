@@ -3,7 +3,7 @@
 #include <QFileInfo>
 #include <QRegularExpression>
 
-namespace GVis::IO {
+namespace GViS::IO {
 
 std::expected<Physics::PhysicalUnitsProfile, IO::ReadStatus>
 importIniFile(const QString& filePath) {
@@ -44,4 +44,4 @@ importIniFile(const QString& filePath) {
     return profile;
 }
 
-} // namespace GVis::IO
+} // namespace GViS::IO

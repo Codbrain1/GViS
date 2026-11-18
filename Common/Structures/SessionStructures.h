@@ -18,7 +18,7 @@
 #include "FileSchemeRegistry.h"
 #include <float.h>
 
-namespace GVis::Session {
+namespace GViS::Session {
 Q_NAMESPACE
 
 enum class ProjectFormat { Json, Xml };
@@ -58,7 +58,7 @@ class DataNodeDTO {
     Q_PROPERTY(QString name MEMBER name)
     Q_PROPERTY(QString path MEMBER path)
     Q_PROPERTY(Visualize::EntityType type MEMBER type)
-    Q_PROPERTY(GVis::Core::DataNodeMetaData stats MEMBER stats)
+    Q_PROPERTY(GViS::Core::DataNodeMetaData stats MEMBER stats)
     Q_PROPERTY(IO::FileFormat format MEMBER format)
 
   public:
@@ -66,7 +66,7 @@ class DataNodeDTO {
     QString                      name;
     QString                      path;
     Visualize::EntityType        type;
-    GVis::Core::DataNodeMetaData stats;
+    GViS::Core::DataNodeMetaData stats;
     IO::FileFormat               format;
     QUuid scheme; // обрабатывается через отдельные методы потому что это variant
     bool  operator==(const DataNodeDTO&) const = default;
@@ -116,7 +116,7 @@ class LayerDTO {
     Q_PROPERTY(QUuid viewId MEMBER viewId)
     Q_PROPERTY(QString name MEMBER name)
     Q_PROPERTY(bool isSynced MEMBER isSynced)
-    Q_PROPERTY(GVis::Visualize::Layers::RenderLayerType renderType MEMBER renderType)
+    Q_PROPERTY(GViS::Visualize::Layers::RenderLayerType renderType MEMBER renderType)
     Q_PROPERTY(QVariantMap settings MEMBER settings)
   public:
     QUuid                              layerId;
@@ -139,8 +139,8 @@ class LayerManagerDTO {
 
 class FileSchemeRegistryDTO {
     Q_GADGET
-    Q_PROPERTY(QList<GVis::IO::ReadSchemeUI> readSchemes MEMBER readSchemes)
-    Q_PROPERTY(QList<GVis::IO::WriteSchemeUI> writeSchemes MEMBER writeSchemes)
+    Q_PROPERTY(QList<GViS::IO::ReadSchemeUI> readSchemes MEMBER readSchemes)
+    Q_PROPERTY(QList<GViS::IO::WriteSchemeUI> writeSchemes MEMBER writeSchemes)
   public:
     QList<IO::ReadSchemeUI>  readSchemes;
     QList<IO::WriteSchemeUI> writeSchemes;
@@ -148,7 +148,7 @@ class FileSchemeRegistryDTO {
 
 class ColorMapManagerDTO {
     Q_GADGET
-    Q_PROPERTY(QList<GVis::Visualize::ColorMap> colorMaps MEMBER colorMaps)
+    Q_PROPERTY(QList<GViS::Visualize::ColorMap> colorMaps MEMBER colorMaps)
   public:
     QList<Visualize::ColorMap> colorMaps;
     bool                       operator==(const ColorMapManagerDTO&) const = default;
@@ -180,11 +180,11 @@ class VideoPlayerDTO {
 
 class ProjectDTO {
     Q_GADGET
-    Q_PROPERTY(GVis::Session::ObjectRegistryDTO objregDTO MEMBER objregDTO)
-    Q_PROPERTY(GVis::Session::ViewManagerDTO viewmanDTO MEMBER viewmanDTO)
-    Q_PROPERTY(GVis::Session::LayerManagerDTO layermanDTO MEMBER layermanDTO)
-    Q_PROPERTY(GVis::Session::ColorMapManagerDTO colormapmanDTO MEMBER colormapmanDTO)
-    Q_PROPERTY(GVis::Session::VideoPlayerDTO videoPlayerDTO MEMBER videoPlayerDTO)
+    Q_PROPERTY(GViS::Session::ObjectRegistryDTO objregDTO MEMBER objregDTO)
+    Q_PROPERTY(GViS::Session::ViewManagerDTO viewmanDTO MEMBER viewmanDTO)
+    Q_PROPERTY(GViS::Session::LayerManagerDTO layermanDTO MEMBER layermanDTO)
+    Q_PROPERTY(GViS::Session::ColorMapManagerDTO colormapmanDTO MEMBER colormapmanDTO)
+    Q_PROPERTY(GViS::Session::VideoPlayerDTO videoPlayerDTO MEMBER videoPlayerDTO)
 
   public:
     ObjectRegistryDTO  objregDTO;
@@ -200,7 +200,7 @@ struct [[deprecated("Use DataNodeDTO instead")]] DataNodeState {
     QString                                           label;
     QString                                           path;
     Visualize::EntityType                             type;
-    GVis::Core::DataNodeMetaData                      stats;
+    GViS::Core::DataNodeMetaData                      stats;
     IO::FileFormat                                    format;
     IO::ReadScheme                                    scheme;
 };
@@ -227,19 +227,19 @@ struct [[deprecated("Don't use this structure")]] CurrentSession {
     QString projectFilePath;
     bool    isDirty = false;
 };
-} // namespace GVis::Session
+} // namespace GViS::Session
 
-Q_DECLARE_METATYPE(GVis::Session::ExperimentDTO)
-Q_DECLARE_METATYPE(GVis::Session::SnapshotDTO)
-Q_DECLARE_METATYPE(GVis::Session::DataNodeDTO)
-Q_DECLARE_METATYPE(GVis::Session::ObjectRegistryDTO)
-Q_DECLARE_METATYPE(GVis::Session::ViewDTO)
-Q_DECLARE_METATYPE(GVis::Session::ViewManagerDTO)
-Q_DECLARE_METATYPE(GVis::Session::LayerDTO)
-Q_DECLARE_METATYPE(GVis::Session::LayerManagerDTO)
-Q_DECLARE_METATYPE(GVis::Session::FileSchemeRegistryDTO)
-Q_DECLARE_METATYPE(GVis::Session::ColorMapManagerDTO)
-Q_DECLARE_METATYPE(GVis::Session::VideoPlayerLayerDTO)
-Q_DECLARE_METATYPE(GVis::Session::VideoPlayerDTO)
-Q_DECLARE_METATYPE(GVis::Session::ProjectDTO)
-Q_DECLARE_METATYPE(GVis::Session::ProjectFormat)
+Q_DECLARE_METATYPE(GViS::Session::ExperimentDTO)
+Q_DECLARE_METATYPE(GViS::Session::SnapshotDTO)
+Q_DECLARE_METATYPE(GViS::Session::DataNodeDTO)
+Q_DECLARE_METATYPE(GViS::Session::ObjectRegistryDTO)
+Q_DECLARE_METATYPE(GViS::Session::ViewDTO)
+Q_DECLARE_METATYPE(GViS::Session::ViewManagerDTO)
+Q_DECLARE_METATYPE(GViS::Session::LayerDTO)
+Q_DECLARE_METATYPE(GViS::Session::LayerManagerDTO)
+Q_DECLARE_METATYPE(GViS::Session::FileSchemeRegistryDTO)
+Q_DECLARE_METATYPE(GViS::Session::ColorMapManagerDTO)
+Q_DECLARE_METATYPE(GViS::Session::VideoPlayerLayerDTO)
+Q_DECLARE_METATYPE(GViS::Session::VideoPlayerDTO)
+Q_DECLARE_METATYPE(GViS::Session::ProjectDTO)
+Q_DECLARE_METATYPE(GViS::Session::ProjectFormat)

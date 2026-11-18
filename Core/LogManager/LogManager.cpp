@@ -10,7 +10,7 @@
 #include <qloggingcategory.h>
 #include <qstandardpaths.h>
 
-namespace GVis::Core {
+namespace GViS::Core {
 void LogManager::setup() {
     QString logPath;
 #ifdef QT_DEBUG
@@ -28,15 +28,15 @@ void LogManager::setup() {
     // Выключаем debug для всех, оставляем info и выше
     // Но разрешаем Core и IO всегда писать Info
     QString rules = "*debug=false\n"
-                    "GVis.*.info=true";
+                    "GViS.*.info=true";
     QLoggingCategory::setFilterRules(rules);
 }
 
 void LogManager::setVerbose(bool enabled) {
     if (enabled)
         // Включаем вообще всё для диагностики
-        QLoggingCategory::setFilterRules("GVis.*=true");
+        QLoggingCategory::setFilterRules("GViS.*=true");
     else
         QLoggingCategory::setFilterRules("*.debug=false");
 }
-} // namespace GVis::Core
+} // namespace GViS::Core

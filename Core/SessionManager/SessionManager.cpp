@@ -17,10 +17,9 @@
 #include "Session/Reflection.h"
 #include <algorithm>
 
-
-namespace GVis::Core {
+namespace GViS::Core {
 namespace {
-QJsonObject colorMapToJson(const GVis::Visualize::ColorMap& map) {
+QJsonObject colorMapToJson(const GViS::Visualize::ColorMap& map) {
     QJsonObject mapJson;
     mapJson.insert(QStringLiteral("id"), map.id.toString());
     mapJson.insert(QStringLiteral("name"), map.name);
@@ -40,13 +39,13 @@ QJsonObject colorMapToJson(const GVis::Visualize::ColorMap& map) {
     return mapJson;
 }
 
-std::optional<GVis::Visualize::ColorMap> colorMapFromJson(const QJsonObject& json) {
+std::optional<GViS::Visualize::ColorMap> colorMapFromJson(const QJsonObject& json) {
     if (!json.contains(QStringLiteral("id")) || !json.contains(QStringLiteral("name")) ||
         !json.contains(QStringLiteral("points"))) {
         return std::nullopt;
     }
 
-    GVis::Visualize::ColorMap map;
+    GViS::Visualize::ColorMap map;
     map.id       = QUuid::fromString(json.value(QStringLiteral("id")).toString());
     map.name     = json.value(QStringLiteral("name")).toString();
     map.filePath = json.value(QStringLiteral("filePath")).toString();
@@ -59,7 +58,7 @@ std::optional<GVis::Visualize::ColorMap> colorMapFromJson(const QJsonObject& jso
             return std::nullopt;
         }
         const QJsonObject           pointJson = pointValue.toObject();
-        GVis::Visualize::ColorPoint point;
+        GViS::Visualize::ColorPoint point;
         point.x = pointJson.value(QStringLiteral("x")).toDouble();
         point.r = pointJson.value(QStringLiteral("r")).toDouble();
         point.g = pointJson.value(QStringLiteral("g")).toDouble();
@@ -74,16 +73,16 @@ std::optional<GVis::Visualize::ColorMap> colorMapFromJson(const QJsonObject& jso
 }
 } // namespace
 
-SessionManager::SessionManager(GVis::Core::ObjectRegistry* registry,
-                               GVis::Core::LayerManager*   layerManager,
-                               GVis::Core::ViewManager*    viewManager,
+SessionManager::SessionManager(GViS::Core::ObjectRegistry* registry,
+                               GViS::Core::LayerManager*   layerManager,
+                               GViS::Core::ViewManager*    viewManager,
                                QObject*                    parent)
     : QObject(parent),
       m_registry(registry),
       m_layerManager(layerManager),
       m_viewManager(viewManager) {
     // ВАЖНО: Инициализируем хранилище, иначе будет краш!
-    m_storage_session = std::make_unique<GVis::Session::SessionStorage>();
+    m_storage_session = std::make_unique<GViS::Session::SessionStorage>();
 }
 
 void SessionManager::setVideoPlayerStateHandlers(
@@ -142,15 +141,15 @@ std::optional<Visualize::ColorMap> SessionManager::loadPalette(const QString& fi
 // saveProject() -- создает DTO и сохраняет проект
 // loadProject() -- загружает DTO и восстанавливает состояние приложения
 // ===================================================
-bool SessionManager::saveProject(const QString& filePath, GVis::Session::ProjectFormat format) {
+bool SessionManager::saveProject(const QString& filePath, GViS::Session::ProjectFormat format) {
     if (filePath.isEmpty()) {
         emit errorOccurred("Project file path is empty");
         return false;
     }
 
-    const GVis::Session::ProjectDTO dto     = createProjectDTO();
-    const auto                      dataMap = GVis::Reflection::gadgetToVariantMap(dto);
-    const auto                      codec   = GVis::Session::ProjectFormatFactory::create(format);
+    const GViS::Session::ProjectDTO dto     = createProjectDTO();
+    const auto                      dataMap = GViS::Reflection::gadgetToVariantMap(dto);
+    const auto                      codec   = GViS::Session::ProjectFormatFactory::create(format);
     if (!codec) {
         emit errorOccurred("Unsupported project format");
         return false;
@@ -168,13 +167,13 @@ bool SessionManager::loadProject(const QString& filePath) {
         return false;
     }
 
-    const auto format = GVis::Session::ProjectFormatFactory::fromFilePath(".json");
+    const auto format = GViS::Session::ProjectFormatFactory::fromFilePath(".json");
     if (!format.has_value()) {
         emit errorOccurred("Unsupported project format");
         return false;
     }
 
-    const auto codec = GVis::Session::ProjectFormatFactory::create(*format);
+    const auto codec = GViS::Session::ProjectFormatFactory::create(*format);
     if (!codec) {
         emit errorOccurred("Unsupported project format");
         return false;
@@ -203,18 +202,18 @@ bool SessionManager::loadProject(const QString& filePath) {
         }
     }
 
-    const auto dto = GVis::Reflection::variantMapToGadget<GVis::Session::ProjectDTO>(*map);
+    const auto dto = GViS::Reflection::variantMapToGadget<GViS::Session::ProjectDTO>(*map);
     if (!fromProjectDTO(dto)) {
         emit errorOccurred("Failed to restore project from DTO");
         return false;
     }
 
-    emit projectLoaded(GVis::Session::ProjectState{});
+    emit projectLoaded(GViS::Session::ProjectState{});
     return true;
 }
 
-GVis::Session::ProjectDTO SessionManager::createProjectDTO() const {
-    GVis::Session::ProjectDTO dto;
+GViS::Session::ProjectDTO SessionManager::createProjectDTO() const {
+    GViS::Session::ProjectDTO dto;
 
     if (m_registry) {
         if (const auto registryDto = ObjectRegistrySerializer::toDTO(m_registry))
@@ -240,12 +239,12 @@ GVis::Session::ProjectDTO SessionManager::createProjectDTO() const {
         if (const auto viewDto = ViewManagerSerializer::toDTO(m_viewManager))
             dto.viewmanDTO = *viewDto;
     }
-    dto.colormapmanDTO = GVis::Visualize::ColorMapManagerSerializer::toDTO();
+    dto.colormapmanDTO = GViS::Visualize::ColorMapManagerSerializer::toDTO();
 
     return dto;
 }
 
-bool SessionManager::fromProjectDTO(const GVis::Session::ProjectDTO& dto) {
+bool SessionManager::fromProjectDTO(const GViS::Session::ProjectDTO& dto) {
     if (!m_registry || !m_layerManager || !m_viewManager)
         return false;
 
@@ -268,13 +267,13 @@ bool SessionManager::fromProjectDTO(const GVis::Session::ProjectDTO& dto) {
 
     bool is_succses = ObjectRegistrySerializer::fromDTO(dto.objregDTO, m_registry);
     is_succses      = is_succses && ViewManagerSerializer::fromDTO(dto.viewmanDTO, m_viewManager);
-    GVis::Visualize::ColorMapManagerSerializer::fromDTO(dto.colormapmanDTO);
+    GViS::Visualize::ColorMapManagerSerializer::fromDTO(dto.colormapmanDTO);
 
     LayerManagerSerializer::NodeResolver nodeRes =
         [&](const QUuid& id) -> std::shared_ptr<DataNode> { return m_registry->getNode(id); };
 
     LayerManagerSerializer::ViewResolver viewRes =
-        [&](const QUuid& id) -> std::shared_ptr<GVis::Visualize::Views::AbstractView> {
+        [&](const QUuid& id) -> std::shared_ptr<GViS::Visualize::Views::AbstractView> {
         return m_viewManager->getView(id);
     };
 
@@ -284,4 +283,4 @@ bool SessionManager::fromProjectDTO(const GVis::Session::ProjectDTO& dto) {
         m_restoreVideoPlayerState(dto.videoPlayerDTO);
     return is_succses;
 }
-} // namespace GVis::Core
+} // namespace GViS::Core

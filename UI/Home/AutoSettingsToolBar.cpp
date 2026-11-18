@@ -5,7 +5,7 @@
 #include <QMetaProperty>
 #include <QWidgetAction>
 
-namespace GVis::UI {
+namespace GViS::UI {
 
 AutoSettingsToolBar::AutoSettingsToolBar(QWidget* parent) : QToolBar(parent) {
     setMovable(false);
@@ -218,4 +218,4 @@ void AutoSettingsToolBar::syncAll() {
         PropertyControlFactory::syncEditor(e.target, e.prop, e.widget);
 }
 
-} // namespace GVis::UI
+} // namespace GViS::UI

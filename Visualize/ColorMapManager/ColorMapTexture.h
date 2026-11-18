@@ -6,7 +6,7 @@
 #include <QUuid>
 #include "colormapmanager_export.h"
 
-namespace GVis::Visualize::Layers {
+namespace GViS::Visualize::Layers {
 
 // Кэш 1D-текстур градиентов, привязанный к share-группе GL-контекстов.
 // При AA_ShareOpenGLContexts=true все QOpenGLWidget-ы приложения используют
@@ -31,4 +31,4 @@ class COLORMAPMANAGER_EXPORT ColorMapTexture {
     static QMap<QOpenGLContext*, ContextCache> s_caches;
 };
 
-} // namespace GVis::Visualize::Layers
+} // namespace GViS::Visualize::Layers

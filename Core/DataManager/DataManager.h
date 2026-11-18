@@ -14,7 +14,7 @@
 #include "IO/ReadResult.h"
 #include "Structures/ObjectRegistryStructures.h"
 
-namespace GVis::Core {
+namespace GViS::Core {
 class DataManager : public QObject {
     Q_OBJECT
   public:
@@ -73,4 +73,4 @@ class DataManager : public QObject {
     TaskManager*   m_taskManager;
     IO::FilePolicy m_global_policy = IO::FilePolicy::Auto;
 };
-} // namespace GVis::Core
+} // namespace GViS::Core

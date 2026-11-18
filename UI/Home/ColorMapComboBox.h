@@ -8,7 +8,7 @@
 #include <qtmetamacros.h>
 #include <qwidget.h>
 
-namespace GVis::UI {
+namespace GViS::UI {
 class ColorMapComboBox : public QComboBox {
     Q_OBJECT
   public:
@@ -25,4 +25,4 @@ class ColorMapComboBox : public QComboBox {
     QPushButton* m_newButton  = nullptr;
     QPushButton* m_editButton = nullptr;
 };
-} // namespace GVis::UI
+} // namespace GViS::UI

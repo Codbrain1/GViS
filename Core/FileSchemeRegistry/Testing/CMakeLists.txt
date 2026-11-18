@@ -1,1 +1,1 @@
-GVis_add_test(TestFileSchemeRegistry FileSchemeRegistry)
+GViS_add_test(TestFileSchemeRegistry FileSchemeRegistry)

@@ -2,7 +2,7 @@
 #include <qtmetamacros.h>
 #include "../../LayerSettings.h"
 
-namespace GVis::Visualize::Layers {
+namespace GViS::Visualize::Layers {
 // ============================================================
 // Настройки для ParticleRendererLayer — обычные точки-частицы
 // ============================================================
@@ -70,4 +70,4 @@ public:
     bool m_shadeAsSphere = true;
 };
 
-} // namespace GVis::Visualize::Layers
+} // namespace GViS::Visualize::Layers

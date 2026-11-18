@@ -14,7 +14,7 @@
 #include "Common/Structures/ObjectRegistryStructures.h" // Путь к файлу с DataNode
 #include "Core/ObjectRegistry/ObjectRegistry.h"
 
-using namespace GVis::Core;
+using namespace GViS::Core;
 
 class TestRegisterNode : public QObject {
     Q_OBJECT
@@ -33,7 +33,7 @@ class TestRegisterNode : public QObject {
         m_registry->registerNode(node);
         QCOMPARE(m_registry->getAllNodes().size(), 1);
         QCOMPARE(spy.count(), 1);
-        auto signaledNode = spy.at(0).at(0).value<std::shared_ptr<GVis::Core::DataNode>>();
+        auto signaledNode = spy.at(0).at(0).value<std::shared_ptr<GViS::Core::DataNode>>();
         QCOMPARE(signaledNode->id, node->id);
     }
 
@@ -108,7 +108,7 @@ class TestRegisterNode : public QObject {
 
 // Не забудь зарегистрировать shared_ptr в метасистеме,
 // если это еще не сделано в основном коде, иначе QSignalSpy его не вытащит.
-Q_DECLARE_METATYPE(std::shared_ptr<GVis::Core::DataNode>)
+Q_DECLARE_METATYPE(std::shared_ptr<GViS::Core::DataNode>)
 
 QTEST_MAIN(TestRegisterNode)
 #include "TestRegisterNode.moc"

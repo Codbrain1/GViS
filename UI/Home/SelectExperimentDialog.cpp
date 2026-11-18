@@ -7,7 +7,7 @@
 #include <qdialogbuttonbox.h>
 
 SelectExperimentDialog::SelectExperimentDialog(
-    const QList<std::shared_ptr<GVis::Core::Experiment>>& existingExperiments,
+    const QList<std::shared_ptr<GViS::Core::Experiment>>& existingExperiments,
     QWidget*                                              parent)
     : QDialog(parent) {
     setWindowTitle(tr("Выбор эксперимента"));

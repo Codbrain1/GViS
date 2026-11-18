@@ -3,12 +3,11 @@
 #include "Visualize/ColorMapManager/ColorMapManager.h"
 #include "colormapmanager_export.h"
 
-
-namespace GVis::Visualize {
+namespace GViS::Visualize {
 
 class COLORMAPMANAGER_EXPORT ColorMapManagerSerializer {
   public:
-    static GVis::Session::ColorMapManagerDTO toDTO();
-    static void                              fromDTO(const GVis::Session::ColorMapManagerDTO& dto);
+    static GViS::Session::ColorMapManagerDTO toDTO();
+    static void                              fromDTO(const GViS::Session::ColorMapManagerDTO& dto);
 };
-} // namespace GVis::Visualize
+} // namespace GViS::Visualize

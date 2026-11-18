@@ -11,7 +11,7 @@
 
 #include "Session/Reflection.h"
 
-namespace GVis::Core {
+namespace GViS::Core {
 
 std::optional<Session::LayerManagerDTO> LayerManagerSerializer::toDTO(Core::LayerManager* layerManager) {
     if (!layerManager)
@@ -116,4 +116,4 @@ LayerManagerSerializer::fromDTO(const Session::LayerDTO& dto, NodeResolver nodeR
     return layer;
 }
 
-} // namespace GVis::Core
+} // namespace GViS::Core

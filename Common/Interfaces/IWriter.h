@@ -10,7 +10,7 @@
 #include <vtkDataSet.h>
 #include <vtkMultiBlockDataSet.h>
 
-namespace GVis
+namespace GViS
 {
 class IWriter
 {
@@ -43,4 +43,4 @@ public:
     return true;
   }
 };
-} // namespace GVis
+} // namespace GViS

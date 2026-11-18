@@ -93,7 +93,7 @@ void ColorBarWidget::styleActiveAxis() {
     activeAxis->setTickLabelFont(tickFont);
 }
 
-void ColorBarWidget::applyGradient(const GVis::Visualize::ColorMap& colorMap) {
+void ColorBarWidget::applyGradient(const GViS::Visualize::ColorMap& colorMap) {
     if (!m_colorScale || !m_plot)
         return;
 
@@ -103,14 +103,14 @@ void ColorBarWidget::applyGradient(const GVis::Visualize::ColorMap& colorMap) {
     if (colorMap.points.isEmpty()) {
         gradient = QCPColorGradient::gpJet;
     } else {
-        QVector<GVis::Visualize::ColorPoint> sortedPoints = colorMap.points;
+        QVector<GViS::Visualize::ColorPoint> sortedPoints = colorMap.points;
         std::sort(sortedPoints.begin(),
                   sortedPoints.end(),
-                  [](const GVis::Visualize::ColorPoint& a, const GVis::Visualize::ColorPoint& b) {
+                  [](const GViS::Visualize::ColorPoint& a, const GViS::Visualize::ColorPoint& b) {
                       return a.x < b.x;
                   });
 
-        for (const GVis::Visualize::ColorPoint& point : sortedPoints) {
+        for (const GViS::Visualize::ColorPoint& point : sortedPoints) {
             const double clampedPos = qBound(0.0, point.x, 1.0);
             gradient.setColorStopAt(clampedPos, QColor::fromRgbF(point.r, point.g, point.b));
         }
@@ -124,11 +124,11 @@ void ColorBarWidget::applyGradient(const GVis::Visualize::ColorMap& colorMap) {
     m_plot->replot();
 }
 
-void ColorBarWidget::setColorMap(const GVis::Visualize::ColorMap& colorMap) {
+void ColorBarWidget::setColorMap(const GViS::Visualize::ColorMap& colorMap) {
     applyGradient(colorMap);
 }
 
-void ColorBarWidget::setSettings(GVis::Visualize::Layers::LayerSettings* settings) {
+void ColorBarWidget::setSettings(GViS::Visualize::Layers::LayerSettings* settings) {
     if (!settings)
         return;
 
@@ -141,11 +141,11 @@ void ColorBarWidget::setSettings(GVis::Visualize::Layers::LayerSettings* setting
     m_settings = settings;
 
     connect(m_settings,
-            &GVis::Visualize::Layers::LayerSettings::changed,
+            &GViS::Visualize::Layers::LayerSettings::changed,
             this,
             &ColorBarWidget::handleUpdateValues);
     connect(m_settings,
-            &GVis::Visualize::Layers::LayerSettings::calculatedRangeChanged,
+            &GViS::Visualize::Layers::LayerSettings::calculatedRangeChanged,
             this,
             &ColorBarWidget::handleUpdateValues);
 
@@ -183,11 +183,11 @@ void ColorBarWidget::handleUpdateValues() {
         rawMax = m_settings->rangeMax();
     }
 
-    auto   pu          = GVis::Physics::PhysicalUnits::fromSimParams(m_settings->physicalKm(),
+    auto   pu          = GViS::Physics::PhysicalUnits::fromSimParams(m_settings->physicalKm(),
                                                                      m_settings->physicalKr(),
                                                                      m_settings->physicalGamma(),
                                                                      m_settings->hasPhysicalGamma());
-    double scaleFactor = GVis::Physics::fieldPhysicalScale(pu, m_settings->colorByField());
+    double scaleFactor = GViS::Physics::fieldPhysicalScale(pu, m_settings->colorByField());
     rawMin *= scaleFactor;
     rawMax *= scaleFactor;
 

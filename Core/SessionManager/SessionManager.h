@@ -9,17 +9,17 @@
 #include <memory>
 #include <optional>
 
-namespace GVis::Core {
+namespace GViS::Core {
 
 class SessionManager : public QObject { // Исправлена опечатка в имени
     Q_OBJECT
   public:
-    explicit SessionManager(GVis::Core::ObjectRegistry* registry,
-                            GVis::Core::LayerManager*   layerManager,
-                            GVis::Core::ViewManager*    viewManager,
+    explicit SessionManager(GViS::Core::ObjectRegistry* registry,
+                            GViS::Core::LayerManager*   layerManager,
+                            GViS::Core::ViewManager*    viewManager,
                             QObject*                    parent = nullptr);
     // Сохранение и загрузка проекта
-    bool saveProject(const QString& filePath, GVis::Session::ProjectFormat format);
+    bool saveProject(const QString& filePath, GViS::Session::ProjectFormat format);
     bool loadProject(const QString& filePath);
     void
     setVideoPlayerStateHandlers(std::function<Session::VideoPlayerDTO()>            saveState,
@@ -32,18 +32,18 @@ class SessionManager : public QObject { // Исправлена опечатка
 
   signals:
     [[deprecated]]
-    void projectLoaded(const GVis::Session::ProjectState& state);
+    void projectLoaded(const GViS::Session::ProjectState& state);
     void errorOccurred(const QString& msg);
 
   private:
-    GVis::Session::ProjectDTO                createProjectDTO() const;
-    bool                                     fromProjectDTO(const GVis::Session::ProjectDTO& dto);
-    GVis::Core::ObjectRegistry*              m_registry;
-    GVis::Core::LayerManager*                m_layerManager;
-    GVis::Core::ViewManager*                 m_viewManager;
+    GViS::Session::ProjectDTO                createProjectDTO() const;
+    bool                                     fromProjectDTO(const GViS::Session::ProjectDTO& dto);
+    GViS::Core::ObjectRegistry*              m_registry;
+    GViS::Core::LayerManager*                m_layerManager;
+    GViS::Core::ViewManager*                 m_viewManager;
     std::function<Session::VideoPlayerDTO()> m_saveVideoPlayerState;
     std::function<QList<QUuid>()>            m_playerLayerIds;
     std::function<void(const Session::VideoPlayerDTO&)> m_restoreVideoPlayerState;
-    std::unique_ptr<GVis::Session::SessionStorage>      m_storage_session;
+    std::unique_ptr<GViS::Session::SessionStorage>      m_storage_session;
 };
-} // namespace GVis::Core
+} // namespace GViS::Core

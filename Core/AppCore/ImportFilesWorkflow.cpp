@@ -5,8 +5,7 @@
 #include <QFileInfo>
 #include "IO/ReaderFactory.h"
 
-
-namespace GVis::Core::Controllers {
+namespace GViS::Core::Controllers {
 
 ImportFilesWorkflow::ImportFilesWorkflow(Core::DataManager*        dataManager,
                                          Core::ObjectRegistry*     objectRegistry,
@@ -49,4 +48,4 @@ void ImportFilesWorkflow::start(const QStringList&          paths,
         emit taskStarted(taskId, targetExperimentId, tasks.size());
 }
 
-} // namespace GVis::Core::Controllers
+} // namespace GViS::Core::Controllers

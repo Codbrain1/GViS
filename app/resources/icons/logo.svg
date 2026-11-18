@@ -36,5 +36,5 @@
   <circle cx="344" cy="198" r="3" fill="#C084FC" />
 
   <!-- Название программы -->
-  <text x="256" y="395" text-anchor="middle" font-family="system-ui, -apple-system, &#39;Segoe UI&#39;, Roboto, Helvetica, Arial, sans-serif" font-weight="800" font-size="84" letter-spacing="6" fill="#FFFFFF">GVis</text>
+  <text x="256" y="395" text-anchor="middle" font-family="system-ui, -apple-system, &#39;Segoe UI&#39;, Roboto, Helvetica, Arial, sans-serif" font-weight="800" font-size="84" letter-spacing="6" fill="#FFFFFF">GViS</text>
 </svg>

@@ -3,7 +3,7 @@
 #include <qobject.h>
 #include <qthread.h>
 
-namespace GVis::Core {
+namespace GViS::Core {
 TaskManager::TaskManager(QObject* parent) : QObject(parent) {
     m_compute_pool.setMaxThreadCount(qMax(2, QThread::idealThreadCount() - 1));
     m_io_pool_batch.setMaxThreadCount(4); // TODO: на слабопроцессорных ПК может работать плохо
@@ -22,4 +22,4 @@ void TaskManager::cancelAll() {
     m_io_pool_batch.waitForDone();
     m_io_pool_urgent.waitForDone();
 }
-} // namespace GVis::Core
+} // namespace GViS::Core

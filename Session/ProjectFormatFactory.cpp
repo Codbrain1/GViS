@@ -3,8 +3,7 @@
 #include <QFileInfo>
 #include "JsonProjectFormatCodec.h"
 
-
-namespace GVis::Session {
+namespace GViS::Session {
 
 ProjectFormatCodecPtr ProjectFormatFactory::create(ProjectFormat format) {
     switch (format) {
@@ -52,4 +51,4 @@ QString ProjectFormatFactory::name(ProjectFormat format) {
     return {};
 }
 
-} // namespace GVis::Session
+} // namespace GViS::Session

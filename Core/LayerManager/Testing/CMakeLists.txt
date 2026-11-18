@@ -1,2 +1,2 @@
-GVis_add_test(TestLayerManagerSerializer GVis::CoreLayerManager)
-GVis_add_test(TestViewLayerLifecycle GVis::CoreLayerManager GVis::CoreViewManager)
+GViS_add_test(TestLayerManagerSerializer GViS::CoreLayerManager)
+GViS_add_test(TestViewLayerLifecycle GViS::CoreLayerManager GViS::CoreViewManager)

@@ -7,7 +7,7 @@
 #include "ViewManager.h"
 #include <optional>
 
-namespace GVis::Core {
+namespace GViS::Core {
 
 std::optional<Session::ViewManagerDTO> ViewManagerSerializer::toDTO(Core::ViewManager* viewManager) {
     if (!viewManager) {
@@ -106,4 +106,4 @@ std::shared_ptr<Visualize::Views::AbstractView> ViewManagerSerializer::fromDTO(c
     }
     return view;
 }
-} // namespace GVis::Core
+} // namespace GViS::Core

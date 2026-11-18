@@ -1,1 +1,1 @@
-GVis_add_test(TestSessionManager GVis::Core GVis::Common GVis::Session GVis::Visualize)
+GViS_add_test(TestSessionManager GViS::Core GViS::Common GViS::Session GViS::Visualize)

@@ -30,7 +30,7 @@
 #include <limits>
 #include <variant>
 
-namespace GVis::IO {
+namespace GViS::IO {
 BINReader::~BINReader() = default;
 
 ReadResult BINReader::read(const QString& path, const ReadScheme& scheme) const {
@@ -976,4 +976,4 @@ bool BINReader::readNonInterleavedStream(QFile&       file,
     return true;
 }
 
-} // namespace GVis::IO
+} // namespace GViS::IO

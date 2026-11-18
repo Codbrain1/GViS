@@ -5,7 +5,7 @@
 #include "Visualize/Layers/vtkAdapter.h"
 #include <algorithm>
 
-namespace GVis::Visualize::Layers {
+namespace GViS::Visualize::Layers {
 
 void ParticleRendererLayer::buildShader() {
     // TODO перенести шейдеры в отдельные файлы
@@ -233,4 +233,4 @@ bool ParticleRendererLayer::boundingBox(QVector3D&, QVector3D&) const {
     return false;
 }
 
-} // namespace GVis::Visualize::Layers
+} // namespace GViS::Visualize::Layers

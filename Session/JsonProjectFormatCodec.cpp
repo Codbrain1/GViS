@@ -3,7 +3,7 @@
 #include <QJsonDocument>
 #include <QJsonParseError>
 
-namespace GVis::Session {
+namespace GViS::Session {
 
 QByteArray JsonProjectFormatCodec::encode(const QVariantMap& data) const {
     return QJsonDocument::fromVariant(data).toJson(QJsonDocument::Indented);
@@ -20,4 +20,4 @@ std::optional<QVariantMap> JsonProjectFormatCodec::decode(const QByteArray& data
     return document.toVariant().toMap();
 }
 
-} // namespace GVis::Session
+} // namespace GViS::Session

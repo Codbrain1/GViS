@@ -8,7 +8,7 @@ target_link_libraries(StyleManager PUBLIC
             project_config
             LayerManager
             ViewManager
-            GVis::Visualize
-            GVis::Common
+            GViS::Visualize
+            GViS::Common
             Qt6::Core
 ) 

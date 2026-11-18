@@ -8,7 +8,7 @@
 #include "BinningPointsLayerSettings.h"
 #include "Enums/LayerEnums.h"
 
-namespace GVis::Visualize::Layers {
+namespace GViS::Visualize::Layers {
 
 class BinningRendererLayer : public IOpenGLRenderLayer {
   public:
@@ -76,4 +76,4 @@ class BinningRendererLayer : public IOpenGLRenderLayer {
     std::shared_ptr<BinningPointsLayerSettings> m_settings;
 };
 
-} // namespace GVis::Visualize::Layers
+} // namespace GViS::Visualize::Layers

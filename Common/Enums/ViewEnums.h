@@ -1,6 +1,6 @@
 #pragma once
 #include <QObject>
-namespace GVis::Visualize::Views
+namespace GViS::Visualize::Views
 {
 namespace View3D
 {
@@ -24,4 +24,4 @@ enum class ViewType
   QCustonPlot2D
 };
 
-} // namespace GVis::Visualize::Views
+} // namespace GViS::Visualize::Views

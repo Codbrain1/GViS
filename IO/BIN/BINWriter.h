@@ -5,7 +5,7 @@
 #include <vtkDataSet.h>
 #include "Structures/IOStructures.h"
 
-namespace GVis::IO { // TODO: решить в каком формате и что будет записываться в бинарные файлы
+namespace GViS::IO { // TODO: решить в каком формате и что будет записываться в бинарные файлы
 
 class BINWriter : public IWriter {
   public:
@@ -19,4 +19,4 @@ class BINWriter : public IWriter {
     bool       validate(QFile& file, const WriteScheme& scheme);
     FilePolicy m_policy;
 };
-} // namespace GVis::IO
+} // namespace GViS::IO

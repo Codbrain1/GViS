@@ -28,16 +28,16 @@ target_sources(AppCore PRIVATE
 target_include_directories(AppCore PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 target_link_libraries(AppCore PUBLIC 
                 project_config
-                GVis::Common
-                GVis::IO
-                GVis::Visualize
-                GVis::Session
-                GVis::Models
+                GViS::Common
+                GViS::IO
+                GViS::Visualize
+                GViS::Session
+                GViS::Models
                 ObjectRegistry
                 DataManager
                 TaskManager
                 SessionManager
                 FileSchemeRegistry
-                GVis::Physics
+                GViS::Physics
                 Qt6::Core
 )

@@ -2,10 +2,10 @@
 #include <vtkDataArray.h>
 #include <vtkPointData.h>
 
-namespace GVis::Physics::Math {
-GVis::Core::DataNodeMetaData calculateMetaData(vtkSmartPointer<vtkDataSet> dataSet,
+namespace GViS::Physics::Math {
+GViS::Core::DataNodeMetaData calculateMetaData(vtkSmartPointer<vtkDataSet> dataSet,
                                                double                      timestamp) {
-    GVis::Core::DataNodeMetaData stats;
+    GViS::Core::DataNodeMetaData stats;
 
     if (dataSet) {
         dataSet->GetBounds(stats.bounds);
@@ -40,4 +40,4 @@ double calculateTimestamp(double timestamp) {
     double l_t = l_r / l_v * 1000.0 * 0.9784;
     return timestamp * l_t;
 }
-} // namespace GVis::Physics::Math
+} // namespace GViS::Physics::Math

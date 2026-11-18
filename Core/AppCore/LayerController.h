@@ -5,14 +5,14 @@
 #include <QUuid>
 #include <memory>
 
-namespace GVis::Core {
+namespace GViS::Core {
 class ObjectRegistry;
 class LayerManager;
 class ViewManager;
 class DataNode;
-} // namespace GVis::Core
+} // namespace GViS::Core
 
-namespace GVis::Core::Controllers {
+namespace GViS::Core::Controllers {
 
 class LayerController final : public QObject {
     Q_OBJECT
@@ -48,4 +48,4 @@ class LayerController final : public QObject {
     Core::ViewManager*    m_viewManager;
 };
 
-} // namespace GVis::Core::Controllers
+} // namespace GViS::Core::Controllers

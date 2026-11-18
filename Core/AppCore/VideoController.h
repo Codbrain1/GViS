@@ -7,22 +7,22 @@
 #include <quuid.h>
 #include <memory>
 
-namespace GVis::Core {
+namespace GViS::Core {
 class ViewManager;
 class LayerManager;
 class ObjectRegistry;
 // class VideoExportManager;
-} // namespace GVis::Core
+} // namespace GViS::Core
 
-namespace GVis::Visualize::Layers {
+namespace GViS::Visualize::Layers {
 class Layer;
 }
 
-namespace GVis::Visualize::Views {
+namespace GViS::Visualize::Views {
 class AbstractView;
 }
 
-namespace GVis::Core::Controllers {
+namespace GViS::Core::Controllers {
 // ---------------------------------------------------------
 // @SECTION: Экспорт видео
 // ---------------------------------------------------------
@@ -82,8 +82,8 @@ class VideoController : public QObject {
     void restorePlayerLayersWhenReady();
 
     const int floatWindow = 15;
-    QMap<GVis::Visualize::EntityType,
-         QList<std::shared_ptr<GVis::Visualize::Layers::Layer>>>
+    QMap<GViS::Visualize::EntityType,
+         QList<std::shared_ptr<GViS::Visualize::Layers::Layer>>>
                                         m_snapshotPlayerSate; // слои для текущего snapshot
     QHash<QUuid, QUuid>                 m_playerLayerSources;
     QList<Session::VideoPlayerLayerDTO> m_restoredPlayerLayers;
@@ -100,4 +100,4 @@ class VideoController : public QObject {
     Core::LayerManager*   m_layerManager;
 };
 
-} // namespace GVis::Core::Controllers
+} // namespace GViS::Core::Controllers

@@ -3,7 +3,7 @@
 #include "Visualize/Layers/Layer.h"
 #include <memory>
 
-namespace GVis::Core {
+namespace GViS::Core {
 
 class StyleManager {
   public:
@@ -20,4 +20,4 @@ class StyleManager {
                           std::shared_ptr<DataNode>                 targetNode);
 };
 
-} // namespace GVis::Core
+} // namespace GViS::Core

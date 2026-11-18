@@ -8,9 +8,8 @@
 #include "Core/ViewManager/ViewManager.h"
 #include "Models/DataTreeModel/DataTreeModel.h"
 
-
-using namespace GVis::Core;
-using namespace GVis::Models;
+using namespace GViS::Core;
+using namespace GViS::Models;
 
 class TestDataTreeModel : public QObject {
     Q_OBJECT
@@ -43,7 +42,7 @@ class TestDataTreeModel : public QObject {
         QCOMPARE(snapshotIndex.data(DataTreeModel::IdRole).value<QUuid>(), snapshot->id);
 
         auto node  = std::make_shared<DataNode>(nullptr, QStringLiteral("Gas node"));
-        node->type = GVis::Visualize::EntityType::Gas;
+        node->type = GViS::Visualize::EntityType::Gas;
         snapshot->addComponent(node);
         m_registry->registerNodeToSnapshot(node, snapshot->id);
 
@@ -114,7 +113,7 @@ class TestDataTreeModel : public QObject {
         experiment->addSnapshot(snapshot);
         m_registry->registerExperiment(experiment);
         ViewManager views;
-        const auto  viewId = views.createView(GVis::Visualize::Views::ViewType::OpenGL3D);
+        const auto  viewId = views.createView(GViS::Visualize::Views::ViewType::OpenGL3D);
         QVERIFY(!viewId.isNull());
         const auto firstLayerId  = m_layerManager->createLayer(first, views.getView(viewId));
         const auto secondLayerId = m_layerManager->createLayer(second, views.getView(viewId));
@@ -162,7 +161,7 @@ class TestDataTreeModel : public QObject {
         QCOMPARE(m_model->rowCount(experimentIndex), 0);
 
         auto node  = std::make_shared<DataNode>(nullptr, QStringLiteral("Stars node"));
-        node->type = GVis::Visualize::EntityType::Stars;
+        node->type = GViS::Visualize::EntityType::Stars;
         snapshot->addComponent(node);
         m_registry->registerNodeToSnapshot(node, snapshot->id);
 

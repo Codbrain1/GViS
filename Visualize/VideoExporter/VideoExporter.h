@@ -6,7 +6,7 @@
 #include <vtkSmartPointer.h>
 #include <vtkWindowToImageFilter.h>
 
-namespace GVis::Visualize {
+namespace GViS::Visualize {
 
 class VideoExporter : public QObject {
     Q_OBJECT
@@ -27,4 +27,4 @@ class VideoExporter : public QObject {
     bool                                    m_isRecording = false;
 };
 
-} // namespace GVis::Visualize
+} // namespace GViS::Visualize

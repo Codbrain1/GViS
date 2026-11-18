@@ -43,15 +43,15 @@ int main(int argc, char* argv[]) {
         return 0;
     }
 
-    auto reader = GVis::IO::createReader(GVis::IO::FileFormat::BIN);
-    reader->setPolicy(GVis::IO::FilePolicy::ForceMapped);
+    auto reader = GViS::IO::createReader(GViS::IO::FileFormat::BIN);
+    reader->setPolicy(GViS::IO::FilePolicy::ForceMapped);
 
 
-    auto targetKey = GVis::IO::PresetKey{GVis::Visualize::EntityType::Stars,
-                                         GVis::IO::FileFormat::BIN,
-                                         GVis::IO::ModelingProgrammVersion::V2};
+    auto targetKey = GViS::IO::PresetKey{GViS::Visualize::EntityType::Stars,
+                                         GViS::IO::FileFormat::BIN,
+                                         GViS::IO::ModelingProgrammVersion::V2};
 
-    const auto presets = GVis::IO::ReadSchemePresets::getStandardPresets();
+    const auto presets = GViS::IO::ReadSchemePresets::getStandardPresets();
     auto       it = std::find_if(presets.begin(), presets.end(), [&targetKey](const auto& pair) {
         return pair.first == targetKey;
     });

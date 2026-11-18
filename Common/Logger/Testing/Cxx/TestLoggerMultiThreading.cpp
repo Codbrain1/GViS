@@ -14,7 +14,7 @@ private slots:
   void initTestCase() {
     QString testLogName = "test_output.log";
     QFile::remove(testLogName);
-    GVis::Common::Logger::init(testLogName);
+    GViS::Common::Logger::init(testLogName);
   };
   void testMultiThreadWrite() {
     const int iterationsThread = 100;                              // число записей одним потоком

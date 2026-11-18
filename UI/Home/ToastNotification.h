@@ -8,7 +8,7 @@ class QLabel;
 class QToolButton;
 class QTimer;
 
-namespace GVis::UI {
+namespace GViS::UI {
 
 class ToastNotification final : public QFrame {
     Q_OBJECT
@@ -37,4 +37,4 @@ class ToastNotification final : public QFrame {
     QList<ErrorMessage> m_pendingErrors;
 };
 
-} // namespace GVis::UI
+} // namespace GViS::UI

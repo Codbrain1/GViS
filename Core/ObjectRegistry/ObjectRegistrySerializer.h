@@ -4,11 +4,11 @@
 #include "objectregistry_export.h"
 #include <memory>
 
-namespace GVis::Core {
+namespace GViS::Core {
 class ObjectRegistry;
 }
 
-namespace GVis::Core {
+namespace GViS::Core {
 class OBJECTREGISTRY_EXPORT ObjectRegistrySerializer {
   public:
     static std::optional<Session::ObjectRegistryDTO> toDTO(Core::ObjectRegistry* registry);
@@ -22,4 +22,4 @@ class OBJECTREGISTRY_EXPORT ObjectRegistrySerializer {
     static std::shared_ptr<Core::Snapshot>       fromDTO(const Session::SnapshotDTO& dto);
     static std::shared_ptr<Core::DataNode>       fromDTO(const Session::DataNodeDTO& dto);
 };
-} // namespace GVis::Core
+} // namespace GViS::Core

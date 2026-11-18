@@ -11,9 +11,9 @@
 #include "Core/ViewManager/ViewManager.h"
 #include "Structures/SessionStructures.h"
 
-using namespace GVis::Core;
-using namespace GVis::Session;
-using namespace GVis::Visualize::Views;
+using namespace GViS::Core;
+using namespace GViS::Session;
+using namespace GViS::Visualize::Views;
 
 class TestSessionManager : public QObject {
     Q_OBJECT
@@ -40,9 +40,9 @@ class TestSessionManager : public QObject {
         }
 
         auto node =
-            std::make_shared<DataNode>(nullptr, "Node1", 12.5, GVis::Visualize::EntityType::Stars);
+            std::make_shared<DataNode>(nullptr, "Node1", 12.5, GViS::Visualize::EntityType::Stars);
         node->path   = "/data/file.bin";
-        node->format = GVis::IO::FileFormat::BIN;
+        node->format = GViS::IO::FileFormat::BIN;
         node->scheme = QUuid::createUuid();
 
         auto snapshot = std::make_shared<Snapshot>("Snapshot1", 12.5);

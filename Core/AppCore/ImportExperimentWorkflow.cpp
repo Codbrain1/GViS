@@ -9,8 +9,7 @@
 #include "IO/PhysicalUnitsIniReader.h"
 #include <memory>
 
-
-namespace GVis::Core::Controllers {
+namespace GViS::Core::Controllers {
 
 ImportExperimentWorkflow::ImportExperimentWorkflow(ImportFilesWorkflow*  filesWorkflow,
                                                    Core::ObjectRegistry* objectRegistry,
@@ -70,4 +69,4 @@ void ImportExperimentWorkflow::start(const QStringList&          filePaths,
     m_filesWorkflow->start(filePaths, version, experiment->id);
 }
 
-} // namespace GVis::Core::Controllers
+} // namespace GViS::Core::Controllers

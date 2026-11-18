@@ -30,7 +30,7 @@ struct FrameStatistics {
     double maximumMs = 0.0;
 };
 
-bool renderAndWait(GVis::Visualize::Views::View3D::GLViewport& viewport) {
+bool renderAndWait(GViS::Visualize::Views::View3D::GLViewport& viewport) {
     viewport.repaint();
 
     viewport.makeCurrent();
@@ -44,7 +44,7 @@ bool renderAndWait(GVis::Visualize::Views::View3D::GLViewport& viewport) {
     return true;
 }
 
-FrameStatistics measureResidentFrames(GVis::Visualize::Views::View3D::GLViewport& viewport,
+FrameStatistics measureResidentFrames(GViS::Visualize::Views::View3D::GLViewport& viewport,
                                       int                                         frameCount) {
     QVector<double> frameTimes;
     frameTimes.reserve(frameCount);
@@ -75,7 +75,7 @@ int main(int argc, char* argv[]) {
     QCommandLineParser parser;
     parser.setApplicationDescription("Measure first-frame GPU upload and resident SPH rendering.");
     parser.addHelpOption();
-    parser.addPositionalArgument("directory", "Directory containing GVis BIN V2 files.");
+    parser.addPositionalArgument("directory", "Directory containing GViS BIN V2 files.");
     QCommandLineOption warmupOption({"w", "warmup"},
                                     "Number of unmeasured resident frames.",
                                     "count",
@@ -128,10 +128,10 @@ int main(int argc, char* argv[]) {
     }
 
     auto view =
-        GVis::Visualize::Views::ViewFactory::createView(GVis::Visualize::Views::ViewType::OpenGL3D);
-    auto  view3d = std::dynamic_pointer_cast<GVis::Visualize::Views::AbstractView3D>(view);
+        GViS::Visualize::Views::ViewFactory::createView(GViS::Visualize::Views::ViewType::OpenGL3D);
+    auto  view3d = std::dynamic_pointer_cast<GViS::Visualize::Views::AbstractView3D>(view);
     auto* viewport =
-        view3d ? qobject_cast<GVis::Visualize::Views::View3D::GLViewport*>(view3d->getWidget())
+        view3d ? qobject_cast<GViS::Visualize::Views::View3D::GLViewport*>(view3d->getWidget())
                : nullptr;
     if (!viewport) {
         qCritical("Unable to create OpenGL 3D viewport");
@@ -153,12 +153,12 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    auto reader = GVis::IO::createReader(GVis::IO::FileFormat::BIN);
+    auto reader = GViS::IO::createReader(GViS::IO::FileFormat::BIN);
     if (!reader) {
         qCritical("Failed to create BIN reader");
         return 1;
     }
-    reader->setPolicy(GVis::IO::FilePolicy::ForceStandart);
+    reader->setPolicy(GViS::IO::FilePolicy::ForceStandart);
 
     QTextStream output(stdout);
     output << "Benchmarking " << files.size() << " file(s) at " << renderWidth << 'x'
@@ -168,11 +168,11 @@ int main(int argc, char* argv[]) {
     output << "Resident frames exclude file reading and GPU upload. Timings wait for GPU "
               "completion.\n\n";
 
-    const auto presets  = GVis::IO::ReadSchemePresets::getStandardPresets();
+    const auto presets  = GViS::IO::ReadSchemePresets::getStandardPresets();
     const auto schemeIt = std::find_if(presets.cbegin(), presets.cend(), [](const auto& preset) {
-        return preset.first.type == GVis::Visualize::EntityType::DarkMatter &&
-               preset.first.format == GVis::IO::FileFormat::BIN &&
-               preset.first.mpv == GVis::IO::ModelingProgrammVersion::V2;
+        return preset.first.type == GViS::Visualize::EntityType::DarkMatter &&
+               preset.first.format == GViS::IO::FileFormat::BIN &&
+               preset.first.mpv == GViS::IO::ModelingProgrammVersion::V2;
     });
     if (schemeIt == presets.cend()) {
         qCritical("DarkMatter BIN V2 scheme is not registered");
@@ -197,14 +197,14 @@ int main(int argc, char* argv[]) {
         }
 
         const auto dataNode =
-            std::make_shared<GVis::Core::DataNode>(vtkSmartPointer<vtkDataSet>(polyData),
+            std::make_shared<GViS::Core::DataNode>(vtkSmartPointer<vtkDataSet>(polyData),
                                                    file.fileName(),
                                                    0.0,
-                                                   GVis::Visualize::EntityType::DarkMatter);
-        auto renderLayer = GVis::Visualize::Layers::LayerFactory::createLayerRenderer(
+                                                   GViS::Visualize::EntityType::DarkMatter);
+        auto renderLayer = GViS::Visualize::Layers::LayerFactory::createLayerRenderer(
             dataNode,
-            GVis::Visualize::Layers::RenderLayerType::SPH);
-        auto settings = std::make_shared<GVis::Visualize::Layers::SPHPointsLayerSettings>();
+            GViS::Visualize::Layers::RenderLayerType::SPH);
+        auto settings = std::make_shared<GViS::Visualize::Layers::SPHPointsLayerSettings>();
         settings->setColorByField("Mass");
         settings->setAutoRange(false);
         settings->setRangeMin(0.0);

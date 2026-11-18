@@ -25,12 +25,12 @@ class PropertyInspector;
 }
 QT_END_NAMESPACE
 
-namespace GVis::UI {
+namespace GViS::UI {
 class SettingsEditorWidget;
 class PropertyInspector : public QWidget {
     Q_OBJECT
   public:
-    explicit PropertyInspector(GVis::Core::AppCore* app, QWidget* parent = nullptr);
+    explicit PropertyInspector(GViS::Core::AppCore* app, QWidget* parent = nullptr);
     ~PropertyInspector();
     void setCurrentElement(const QUuid& id, Models::DataTreeItem::Type type);
   private slots:
@@ -48,9 +48,9 @@ class PropertyInspector : public QWidget {
     Ui::PropertyInspector* ui;
     QUuid                  m_currentNodeId;
     QUuid                  m_currentElementId;
-    GVis::Core::AppCore*   m_app;
+    GViS::Core::AppCore*   m_app;
     SettingsEditorWidget*  m_dynamicEditor = nullptr;
     void                   setupUiLogic();  // Начальное заполнение комбобоксов
     void                   updateWidgets(); // Синхронизация UI с данными ноды
 };
-} // namespace GVis::UI
+} // namespace GViS::UI

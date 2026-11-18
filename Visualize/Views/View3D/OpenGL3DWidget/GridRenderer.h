@@ -7,7 +7,7 @@
 #include <QOpenGLVertexArrayObject>
 #include "../View3DSettings.h"
 
-namespace GVis::Visualize::Views::View3D {
+namespace GViS::Visualize::Views::View3D {
 
 // Рисует плоскую сетку (GL_LINES) на плоскости XZ. Геометрия перестраивается лениво —
 // только когда extent/lineCount реально изменился, а не каждый кадр.
@@ -40,4 +40,4 @@ class GridRenderer : public QObject {
     int   m_cachedLineCount = -1;
 };
 
-} // namespace GVis::Visualize::Views::View3D
+} // namespace GViS::Visualize::Views::View3D

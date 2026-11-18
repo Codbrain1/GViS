@@ -4,7 +4,7 @@
 #include "Core/ObjectRegistry/ObjectRegistry.h"
 #include "Core/ViewManager/ViewManager.h"
 
-namespace GVis::Core::Controllers {
+namespace GViS::Core::Controllers {
 
 ExperimentController::ExperimentController(Core::ObjectRegistry* objectRegistry,
                                            Core::LayerManager*   layerManager,
@@ -53,4 +53,4 @@ bool ExperimentController::updatePhysicalUnits(const QUuid&                     
     return true;
 }
 
-} // namespace GVis::Core::Controllers
+} // namespace GViS::Core::Controllers

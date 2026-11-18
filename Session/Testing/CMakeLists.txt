@@ -1,5 +1,5 @@
-GVis_add_test(TestReflectionGadgetToVariantMap GVis::Session GVis::Common)
-GVis_add_test(TestReflectionObjectSerialize GVis::Session GVis::Common)
+GViS_add_test(TestReflectionGadgetToVariantMap GViS::Session GViS::Common)
+GViS_add_test(TestReflectionObjectSerialize GViS::Session GViS::Common)
 
 target_sources(TestReflectionGadgetToVariantMap PRIVATE
     TestGadgets.h

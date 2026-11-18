@@ -6,7 +6,7 @@
 #include <QVector3D>
 #include <memory>
 
-namespace GVis::Visualize
+namespace GViS::Visualize
 {
 
 // Базовый интерфейс для любой отрисовки
@@ -52,4 +52,4 @@ public:
   // предоставить границы (например, ещё нет данных)
   virtual bool boundingBox(QVector3D &outMin, QVector3D &outMax) const = 0;
 };
-} // namespace GVis::Visualize
+} // namespace GViS::Visualize

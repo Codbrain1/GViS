@@ -9,8 +9,7 @@
 #include "Session/Reflection.h"
 #include <memory>
 
-
-namespace GVis::Core::Controllers {
+namespace GViS::Core::Controllers {
 
 VideoController::VideoController(Core::ObjectRegistry* objectRegistry,
                                  Core::ViewManager*    viewManager,
@@ -177,7 +176,7 @@ void VideoController::handleFixedEtalonSnapshot(const QUuid& referenceSnapshotId
         return;
     }
 
-    QMap<GVis::Visualize::EntityType, std::shared_ptr<DataNode>> nodesByType;
+    QMap<GViS::Visualize::EntityType, std::shared_ptr<DataNode>> nodesByType;
     for (const auto& node : currentSnapshot->components) {
         if (node) {
             nodesByType.insert(node->type, node);
@@ -225,7 +224,7 @@ void VideoController::handleActivateVisualizeSnapshot(int index) {
         return;
     }
 
-    QMap<GVis::Visualize::EntityType, std::shared_ptr<DataNode>> nodesByType;
+    QMap<GViS::Visualize::EntityType, std::shared_ptr<DataNode>> nodesByType;
     for (const auto& node : snapshot->components) {
         if (node) {
             nodesByType.insert(node->type, node);
@@ -329,4 +328,4 @@ void VideoController::requestLoadFloatWindow(int index) {
         }
     }
 }
-} // namespace GVis::Core::Controllers
+} // namespace GViS::Core::Controllers

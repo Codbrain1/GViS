@@ -13,10 +13,10 @@
 #include "Session/Reflection.h"
 
 
-using namespace GVis::Core;
-using namespace GVis::Session;
-using namespace GVis::Visualize::Views;
-using GVis::Visualize::Layers::RenderLayerType;
+using namespace GViS::Core;
+using namespace GViS::Session;
+using namespace GViS::Visualize::Views;
+using GViS::Visualize::Layers::RenderLayerType;
 
 class TestLayerManagerSerializer : public QObject {
     Q_OBJECT
@@ -72,7 +72,7 @@ class TestLayerManagerSerializer : public QObject {
     }
 
     void testParticleFilterSettingsPreserveRange() {
-        GVis::Visualize::Layers::ParticlePointsLayerSettings settings;
+        GViS::Visualize::Layers::ParticlePointsLayerSettings settings;
         settings.setParticleCount(20001);
         settings.setParticleNumberMin(0);
         settings.setParticleNumberMax(10000);
@@ -87,9 +87,9 @@ class TestLayerManagerSerializer : public QObject {
         QCOMPARE(settings.particleNumberMin(), 0);
         QCOMPARE(settings.particleNumberMax(), 10000);
 
-        const QVariantMap                                    saved = GVis::Reflection::QObjectToVariantMap(&settings);
-        GVis::Visualize::Layers::ParticlePointsLayerSettings restored;
-        QVERIFY(GVis::Reflection::variantMapToQObject(saved, &restored).success);
+        const QVariantMap                                    saved = GViS::Reflection::QObjectToVariantMap(&settings);
+        GViS::Visualize::Layers::ParticlePointsLayerSettings restored;
+        QVERIFY(GViS::Reflection::variantMapToQObject(saved, &restored).success);
         QCOMPARE(restored.particleNumberMin(), 0);
         QCOMPARE(restored.particleNumberMax(), 10000);
         QVERIFY(restored.showAllParticles());

@@ -5,7 +5,7 @@
 #include "Core/ObjectRegistry/ObjectRegistry.h"
 #include "Core/ViewManager/ViewManager.h"
 
-namespace GVis::Core::Controllers {
+namespace GViS::Core::Controllers {
 
 LayerController::LayerController(Core::ObjectRegistry* objectRegistry,
                                  Core::LayerManager*   layerManager,
@@ -118,4 +118,4 @@ void LayerController::onNodeDataLoaded(const QUuid& nodeId) {
     emit sceneUpdateRequested();
 }
 
-} // namespace GVis::Core::Controllers
+} // namespace GViS::Core::Controllers

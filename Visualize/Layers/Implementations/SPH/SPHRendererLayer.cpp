@@ -6,7 +6,7 @@
 #include <algorithm>
 #include <cmath>
 
-namespace GVis::Visualize::Layers {
+namespace GViS::Visualize::Layers {
 
 void SPHRendererLayer::buildShaders() {
     m_splatProgram.addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shaders/splat.vert");
@@ -281,7 +281,7 @@ void SPHRendererLayer::render(QOpenGLFunctions_3_3_Core* gl, const Visualize::Re
     gl->glActiveTexture(GL_TEXTURE1);
     gl->glBindTexture(GL_TEXTURE_1D, ColorMapTexture::getOrCreate(gl, m_settings->colorMapId()));
 
-    float scaleFactor = GVis::Physics::fieldPhysicalScale(pu, m_settings->colorByField());
+    float scaleFactor = GViS::Physics::fieldPhysicalScale(pu, m_settings->colorByField());
 
     m_resolveProgram.bind();
     m_resolveProgram.setUniformValue("uPhysicalTex", 0);
@@ -343,4 +343,4 @@ bool SPHRendererLayer::boundingBox(QVector3D& outMin, QVector3D& outMax) const {
     return true;
 }
 
-} // namespace GVis::Visualize::Layers
+} // namespace GViS::Visualize::Layers

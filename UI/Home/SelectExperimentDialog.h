@@ -18,7 +18,7 @@ struct SelectExperimentDialogResult {
 class SelectExperimentDialog : public QDialog {
     Q_OBJECT
   public:
-    explicit SelectExperimentDialog(const QList<std::shared_ptr<GVis::Core::Experiment>>& existingExperiments,
+    explicit SelectExperimentDialog(const QList<std::shared_ptr<GViS::Core::Experiment>>& existingExperiments,
                                     QWidget*                                              parent);
     ~SelectExperimentDialog() = default;
     SelectExperimentDialogResult getResult() const;

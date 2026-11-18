@@ -1,2 +1,2 @@
-GVis_add_test(TestViewManagerCreateWindow GVis::CoreViewManager)
-GVis_add_test(TestViewManagerSerializer GVis::CoreViewManager)
+GViS_add_test(TestViewManagerCreateWindow GViS::CoreViewManager)
+GViS_add_test(TestViewManagerSerializer GViS::CoreViewManager)

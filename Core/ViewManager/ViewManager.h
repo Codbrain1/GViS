@@ -11,7 +11,7 @@
 #include <map>
 #include <memory>
 
-namespace GVis::Core {
+namespace GViS::Core {
 class VIEWMANAGER_EXPORT ViewManager : public QObject {
     Q_OBJECT
   public:
@@ -59,4 +59,4 @@ class VIEWMANAGER_EXPORT ViewManager : public QObject {
     Physics::PhysicalUnitsProfile                                    m_activeExperimentProfile;
     bool                                                             m_hasActiveExperiment = false;
 };
-} // namespace GVis::Core
+} // namespace GViS::Core
